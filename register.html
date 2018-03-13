@@ -1,0 +1,265 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+
+    <meta content="我的个人信息" name="description" />
+    <meta content="" name="author" />
+    <title>我的个人信息</title>
+    <script type="text/javascript" src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/flexible_css.js"></script>
+    <script type="text/javascript" src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/flexible.js"></script>
+
+    <link href="http://datainfo.b0.upaiyun.com/css/reset.css" rel="stylesheet" type="text/css"/>
+    <link href="css/main.css" rel="stylesheet" type="text/css"/>
+    <link href="http://datainfo.b0.upaiyun.com/css/uiDialog.css" rel="stylesheet" type="text/css"/>
+    <link href="//cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css" rel="stylesheet" type="text/css"/>
+
+</head>
+<body>
+    <div class="content content-register">
+        <div class="reg_tip">
+            <p>为方便我们更好的为您服务</p>
+            <p>麻烦您花一些时间完善孩子信息^_^</p>
+        </div>
+        <div class="user">
+            <div class="fz_0 img_box">
+                <div class="user_img">
+                    <img src="http://datainfo.b0.upaiyun.com/image/default_head.png" class="headimg">
+                    <form id="formUpload">
+                        <input type="hidden" name="policy" value="<?php echo $policy;?>">
+                        <input type="hidden" name="signature" value="<?php echo $signature;?>">
+                        <input type="file" name="file">
+                    </form>
+                    <a class="add_img"></a>
+                </div>
+                <div class="img_tip">
+                    <p>点击头像</p>
+                    <p>可更换孩子头像</p>
+                </div>
+            </div>
+        </div>
+        <div class="form-box">
+            <div class="sex-box box">
+                <span>性别</span>
+                <div class="boxflex">
+                    <div class="box">
+                        <div class="sex-item">
+                            <input type="radio" class="regular-radio" name="radio-1-set" id="radio-1-1" value="1"><label for="radio-1-1"></label>
+                            <span>男</span>
+                        </div>
+                        <div class="sex-item">
+                            <input type="radio" class="regular-radio" name="radio-1-set" id="radio-1-2" value="0"><label for="radio-1-2"></label>
+                            <span>女</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-control">
+                <input class="input" name="user_name" type="text" placeholder="孩子姓名"/>
+            </div>
+            <div class="form-control relative">
+                <select class="input" name="age" type="number" placeholder="请选择年纪">
+                    <option value="">请选择年纪</option>
+                    <option value="1">1岁</option>
+                    <option value="2">2岁</option>
+                    <option value="3">3岁</option>
+                    <option value="4">4岁</option>
+                    <option value="5">5岁</option>
+                    <option value="6">6岁</option>
+                    <option value="7">7岁</option>
+                    <option value="8">8岁</option>
+                    <option value="9">9岁</option>
+                    <option value="10">10岁</option>
+                    <option value="11">11岁</option>
+                    <option value="12">12岁</option>
+                </select>
+                <span class="caret"></span>
+            </div>
+            <div class="form-control">
+                <input class="input" name="school" type="text" placeholder="填写所在学校"/>
+            </div>
+            <div class="form-control">
+                <input class="input" name="phone" type="tel" placeholder="手机号"/>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <a class="btn btn-register">完成</a>
+    </div>
+    <div class="layout layout-crop hide">
+        <div class="imgbox">
+            <img class="cropimage"/>
+        </div>
+        <a class="btn crop"><span>剪切图片</span></a>
+    </div>
+</body>
+</html>
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/1.9.1/jquery.js"></script>
+<script type="text/javascript" src="//cdn.bootcss.com/jquery-jcrop/0.9.12/js/jquery.Jcrop.min.js"></script>
+
+<script type="text/javascript" src="http://datainfo.b0.upaiyun.com/js/uiDialog.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript">
+$(function(){
+    var imageInfo;
+    var dialog = new Dialog();
+    var globalAPI = "/api"
+    function formUpload(){
+        var formData = new FormData($("#formUpload")[0]); 
+
+        $.ajax({
+            url : 'http://v0.api.upyun.com/crash',
+            type : 'POST',
+            data : formData,
+
+            processData : false,
+
+            contentType : false,
+            success : function(responseStr) {
+                var obj = $.parseJSON(responseStr);
+                var pic = obj.url;
+                var myurl = "http://datainfo.b0.upaiyun.com";  //自己访问域名前缀 例如 http://xxxxxx.b0.upaiyun.com
+                $(".headimg").attr("src" ,myurl+pic);       //输出图片
+                imageInfo = obj;
+                $("input[name=file]").val("");
+                $(".cropimage").attr("src",myurl+pic);
+                $(".cropimage").on("load",function(){
+                    $(".layout-crop").show();
+                    dialog.destroy();
+                    setTimeout(function(){
+                        initCrop();
+                    },600)
+                })
+                
+            },
+            error : function(responseStr) {
+                dialog.tip({"msg":"图片上传失败","time":2000});
+            }
+        });
+    }
+    //upyun 文件域的name 一定是file
+    $("input[name=file]").on("change" ,function(){
+        dialog.tip("图片上传中");
+        formUpload();
+    })
+    
+    var jcrop_api;
+    function initCrop(){
+        $('.cropimage').Jcrop({
+          bgFade:  true,
+          bgOpacity: .4,
+          setSelect: [ 0, 0, 200, 200 ],
+          aspectRatio :1,
+        },function(){
+          jcrop_api = this;
+        });
+    }
+    $(".btn.crop").on("click" ,function(){
+        var opt = jcrop_api.tellSelect();
+        console.log(opt)
+        var imgwidth = imageInfo['image-width'];
+        var imgheight = imageInfo['image-height']
+        var winwidth = $(window).width();
+        var rat = imgwidth/winwidth;
+        var cx1 = parseInt(opt.x * rat);
+        var cy1 = parseInt(opt.y * rat);
+        var cx2 = parseInt(opt.w * rat);
+        var cy2 = parseInt(opt.h * rat);
+        var url = "http://datainfo.b0.upaiyun.com"+imageInfo['url']+"!/crop/"+cx2+"x"+cy2+"a"+cx1+"a"+cy1;
+        console.log(url);
+        $(".headimg").attr("src",url).attr("data-src",imageInfo['url']+"!/crop/"+cx2+"x"+cy2+"a"+cx1+"a"+cy1);
+        $(".layout-crop").hide();
+        jcrop_api.release();
+        jcrop_api.destroy();
+        $(".imgbox").html('<img class="cropimage"/>') 
+    });
+
+    $(".btn-register").on("click" ,function(){
+        var group_id = app.getQueryString("id");
+        var headimgurl = $(".headimg").attr('data-src');
+        var sex  = $(".regular-radio:checked").val();
+        var name = $.trim( $("input[name=user_name]").val() );
+        var age = $.trim( $("select[name=age]").val());
+        var school = $.trim( $("input[name=school]").val());
+        var parent_tel = $.trim($("input[name=phone]").val());
+        if(sex ===undefined){
+            dialog.tip({"msg":"请选择性别","time":1200});
+            return;
+        }else if(!name){
+            dialog.tip({"msg":"请填写孩子姓名","time":1200});
+            return; 
+        }else if(!age){
+            dialog.tip({"msg":"请选择孩子的年龄","time":1200});
+            return; 
+        }else if(isNaN(age)){
+            dialog.tip({"msg":"年龄只能是数字","time":1200});
+            return; 
+        }else if(!school){
+            dialog.tip({"msg":"请填写所在学校","time":1200});
+            return; 
+        }else if(!parent_tel){
+            dialog.tip({"msg":"请填写手机号","time":1200});
+            return; 
+        }else if(!app.isMobile(parent_tel)){
+            dialog.tip({"msg":"请填写正确的手机号","time":1200});
+            return; 
+        }else{
+            $.ajax({
+                url: globalAPI+'/user/profile',
+                type: 'POST',
+                dataType: 'jsonp',
+                data: {
+                    "headimgurl" : headimgurl,
+                    "name" : name,
+                    "sex" : sex,
+                    "age" : age,
+                    "school" : school,
+                    "parent_tel" :parent_tel,
+                    "group_id" :group_id,
+                },
+            })
+            .done(function(res) {
+                console.log(res);
+                if(res.code==0){
+                    dialog.tip({"msg":"数据提交成功","time":1200});
+                    window.location.replace("home.html");
+                }else{
+                    dialog.tip({"msg":"数据提交失败","time":1200});
+                }
+            })
+            .fail(function() {
+                dialog.tip({"msg":"数据提交失败","time":1200});
+                return;
+            })
+        }
+    })
+    dialog.tip({"msg":"获取上传TOKEN"})
+    $.ajax({
+        url: globalAPI+'/user/profile',
+        type: 'GET',
+        dataType: 'jsonp',
+        data: {},
+    })
+    .done(function(res) {
+        if(res.code=="0"){
+            var data = res.data;
+            if(!$.isEmptyObject(data)){
+                var dom = $(".content-register");
+                dom.find("input[name=policy]").val(data.upyun.policy);
+                dom.find("input[name=signature]").val(data.upyun.signature);
+                dom.find(".headimg").attr("src",data.headimgurl).attr("data-src",data.headimgurl)
+                dialog.destroy();
+            }else{
+                dialog.tip({"msg":"Token获取失败","time":1600});
+            }
+        }
+    })
+    .fail(function() {
+        dialog.tip({"msg":"用户信息获取失败","time":1600});
+    })
+})
+</script>

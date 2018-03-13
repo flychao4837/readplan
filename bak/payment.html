@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    
+    <meta content="【亲子阅读计划】" name="description" />
+    <meta content="" name="author" />
+    <title>【亲子阅读计划】</title>
+    <script type="text/javascript" src="js/flexible_css.js"></script>
+    <script type="text/javascript" src="js/flexible.js"></script>
+
+    <link href="css/reset.css" rel="stylesheet" type="text/css"/>
+    <link href="css/main.css" rel="stylesheet" type="text/css"/>
+    <link href="css/uiDialog.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+    <div class="bzj-intro">
+        <img src="image/bzj.png"/>
+    </div>
+    <div class="footer">
+        <a class="btn btn_sign">缴纳100保证金(可退)</a>
+    </div>
+    <!--保证金提示-->
+    <div class="layout layout-payment-tip-box hide">
+        <div class="layout-payment-tip">
+            <div class="tip-msg">
+                <p class="title">保证金说明</p>
+                <p>初级及中级：爸爸读，孩子听。</p>
+                <p>高级：读后和孩子一起种一颗种子，说一说过程<p>
+            </div>
+            <a class="close close-payment-tip">×</a>
+            <a class="readnote">我已经阅读</a>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="js/uiDialog.js"></script>
+<script type="text/javascript">
+$(function(){
+	var dialog = new Dialog();
+
+	$(".btn_sign").on("click" ,function(){
+		$(".layout-payment-tip-box").show();
+	})
+	$(".close-payment-tip").on("click" ,function(){
+		$(".layout-payment-tip-box").hide();
+	})
+
+	//TOTO 获取微信 config数据
+	wx.config({
+		debug: false,
+		appId: 'wx50a3dfbc40d2d623',
+		timestamp: 1495247239,
+		nonceStr: '89be8675f7c79ed8072bdcf16176fefa',
+		signature: '673d5534a9a639746123bda6c34b5960012010c5',
+		jsApiList: [
+			'checkJsApi',
+			'getNetworkType',
+			'closeWindow',
+			'chooseWXPay',
+		]
+	});
+	wx.ready(function () {
+		$(".readnote").on("click" ,function(){
+			dialog.tip("正在进入微信支付");
+			$.ajax({
+				url: '/api/payment/create-deposit',
+				type: 'POST',
+				dataType: 'jsonp',
+				data: {money: 100},
+			})
+			.done(function(res) {
+				if(res.code==0){
+					var data = res.data;
+					getOrder({'id':data.id,"module":data.module,"money":100});
+				}else{
+					dialog.tip({"msg":"订单号获取失败","time":2000});
+				}
+			})
+			.fail(function() {
+				dialog.tip({"msg":"订单号获取失败","time":2000});
+			})
+		})
+		/*获取支付订单*/
+		function getOrder(opt){
+			$.ajax({
+				url: '/api/payment/pay',
+				type: 'POST',
+				dataType: 'jsonp',
+				data: {
+					"id":opt.id,
+					"type" :"weixin",
+					"module" : opt.module,
+					"money" : opt.money,
+				},
+			})
+			.done(function(res) {
+				if(res.code==0){
+					console.log(res)
+					goWXpay(res)
+				}else{
+					dialog.tip({"msg":"订单创建失败","time":2000});
+				}
+			})
+			.fail(function() {
+				dialog.tip({"msg":"订单创建失败","time":2000});
+			})
+		}
+		/*微信支付*/
+		function goWXpay(ret){
+		    wx.chooseWXPay({
+		        timestamp: ret.data.timestamp,
+		        nonceStr: ret.data.nonceStr,
+		        package: ret.data.package,
+		        signType: ret.data.signType,
+		        paySign: ret.data.paySign,
+		        success: function (res) {
+		            if (res.errMsg == 'chooseWXPay:ok') {
+		            	dialog.destroy();
+		                window.location.replace( 'register.html');
+		            } else {
+		                dialog.tip({"msg":"支付失败","time":2000});
+		            }
+		        },
+		        cancel: function (res) {
+		        },
+		        fail: function(res){
+		        	dialog.tip({"msg":"微信支付失败","time":2000})
+		        }
+		    });
+		}
+	});
+	wx.error(function (res) {  
+    	dialog.tip({"msg":"微信初始化失败","time":2000})  
+    });
+})
+</script>

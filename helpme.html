@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    
+    <meta content="【亲子阅读计划】" name="description" />
+    <meta content="" name="author" />
+    <title>【亲子阅读计划】</title>
+    <script type="text/javascript" src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/flexible_css.js"></script>
+    <script type="text/javascript" src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/flexible.js"></script>
+
+    <link href="css/reset.css" rel="stylesheet" type="text/css"/>
+    <link href="css/share.css" rel="stylesheet" type="text/css"/>
+    <link href="//cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css" rel="stylesheet" type="text/css"/>
+    <link href="http://datainfo.b0.upaiyun.com/css/uiDialog.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+    <div class="content content-home invite-content hidden">
+        <div class="banner">
+            <!--幻灯改版-->
+            <div class="home-device">
+                <div class="swiper-main">
+                    <div class="swiper-container swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" data-book-id="1111">
+                                <div class="cover">
+                                    <img src="image/cover_1.jpg">
+                                    <a class="listen default my">        
+                                        <img src="http://datainfo.b0.upaiyun.com/image/user_head.png">
+                                    </a>
+                                </div>
+                                <p class="reader">我是<span class="font-warning">段全鑫</span></p>
+                                <p class="title">正在读:<span class="font-warning">格林童话</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="action">
+            <a class="recorder">
+                <i class="icon icon_record"></i>
+            </a>
+            <p class="read-tip">点击图标朗读</p>
+        </div>
+    </div>
+
+    <audio id="globalAudio" class="hide"></audio>
+    <!--全屏录音页面-->
+    <div class="layout layout-record hide">
+        <div class="content-record">
+            <div class="home-device">
+                <div class="swiper-main">
+                    <div class="swiper-container swiper1">
+                        <div class="swiper-wrapper">
+                        </div>
+                    </div>
+                </div>
+                <a class="arrow-left" href="#"></a> 
+                <a class="arrow-right active" href="#"></a>
+                <div class="pagination pagination1">
+                    <div class="recorder-box">
+                        <div class="timer">00:00.00</div>
+                        <a class="recorder">
+                            <i class="icon icon_record"></i>
+                        </a>
+                        <div class="counter"><span>0/0</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="close-page"></a>
+    </div>
+    <div class="layout layout-download-tip-box hide">
+        <div class="layout-task-tip">
+            <div class="tip-msg">
+                <p class="title font-warning">提示</p>
+                <p class="notice">0</p>
+            </div>
+            <a class="close close-download-tip"></a>
+        </div>
+    </div>
+    <!--公用信息提示弹层-->
+    <div class="layout common-tip-box hide">
+        <div class="layout-task-tip">
+            <div class="tip-msg">
+                <p class="title font-warning">提示</p>
+                <p class="notice">0</p>
+            </div>
+            <a class="close-common-tip"></a>
+        </div>
+    </div>
+    <!--公用confirm弹层-->
+    <div class="layout layout-confirm-box hide">
+        <div class="layout-setlevelstatus-tip">
+            <div class="tip-msg">
+                <div class="info">
+                    <p>0</p>
+                </div>    
+                <div class="upload-btn">
+                    <a class="cancel">取消</a>
+                    <a class="ok">确定</a>
+                </div>
+            </div>
+            <a class="close close-confirm-tip">×</a>
+        </div>
+    </div>
+    <!--录音结束的播放、提交弹层-->
+    <div class="layout layout-recordfinsish-box hide">
+        <div class="layout-recordfinsish-tip">
+            <div class="tip-msg">
+                <div class="info">
+                    <a class="play-back"></a>
+                    <div class="redord-info">
+                        <p class="user-tip">音频已录制完成，点击左侧播放按钮试听</p>
+                        <p class="cur-book"></p>
+                        <p class="play-time"></p>
+                    </div>
+                </div>    
+                <div class="upload-btn">
+                    <a class="uploadRecordAudio">提交录音</a>
+                </div>
+            </div>
+            
+            <a class="close close-recordfinsish-tip"></a>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/1.9.1/jquery.js"></script>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/Swiper/3.4.2/js/swiper.min.js"></script>
+<script type="text/javascript" src="http://datainfo.b0.upaiyun.com/js/uiDialog.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="js/invite.js"></script>

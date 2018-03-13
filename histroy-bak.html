@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    
+    <meta content="我的阅读历史" name="description" />
+    <meta content="" name="author" />
+    <title>我的阅读历史</title>
+    <script type="text/javascript" src="js/flexible_css.js"></script>
+    <script type="text/javascript" src="js/flexible.js"></script>
+
+    <link href="css/reset.css" rel="stylesheet" type="text/css"/>
+    <link href="css/main.css" rel="stylesheet" type="text/css"/>
+    <link href="css/uiDialog.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+    <div class="content content-histroyinfo">
+        <a class="goback"></a>
+
+        <div class="histroy-list">
+            <div class="list">
+                <div class="stage"><span>第一周</span></div>
+                <div>
+                    <div class="list-item">
+                        <div class="box">
+                            <div class="">
+                                <div class="book-cover">
+                                    <img src="image/cover_1.jpg" />
+                                    <a class="play"></a>
+                                </div>
+                            </div>
+                            <div class="boxflex">
+                                <p class="book-name">郑渊洁10年未出版</p>
+                                
+                                <p class="video-time">00:01:10</p>
+                            </div>
+                            <div class="">
+                                <p class="read-time">2017/05/09</p>
+                            </div>
+                            <div class="">
+                                <a class="wx_share">
+                                    <img src="image/icon_dot.png"/>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <div class="box">
+                            <div class="">
+                                <div class="book-cover">
+                                    <img src="image/cover_1.jpg" />
+                                    <a class="play playing"></a>
+                                </div>
+                            </div>
+                            <div class="boxflex">
+                                <p class="book-name">郑渊洁10年未出版</p>
+                                <p class="video-time">00:01:10</p>
+                            </div>
+                            <div class="">
+                                <p class="read-time">2017/05/09</p>
+                            </div>
+                            <div class="">
+                                <a class="wx_share">
+                                    <img src="image/icon_dot.png"/>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="stage slideup"><span>第一周</span></div>
+                <div>
+                    <div class="list-item">
+                        <p class="invite-friend">来自微信好友：大和</p>
+                        <div class="box">
+                            <div class="">
+                                <div class="book-cover">
+                                    <img src="image/cover_1.jpg" />
+                                    <a class="play playing"></a>
+                                </div>
+                            </div>
+                            <div class="boxflex">
+                                <p class="book-name">郑渊洁10年未出版</p>
+                                <p class="video-time">00:01:10</p>
+                            </div>
+                            <div class="">
+                                <p class="read-time">2017/05/09</p>
+                            </div>
+                            <div class="">
+                                <a class="wx_share">
+                                    <img src="image/icon_dot.png"/>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-item unfinish">
+                        <div class="box">
+                            <div class="">
+                                <div class="book-cover">
+                                    <img src="image/cover_1.jpg" />
+                                    <a class="nofinish_tag">未完成</a>
+                                </div>
+                            </div>
+                            <div class="boxflex">
+                                <p class="book-name">郑渊洁10年未出版</p>
+                                <p class="video-time">00:01:10</p>
+                            </div>
+                            <div class="">
+                                <a class="invite-read">邀请好友完成</a>
+                            </div>
+                            <div class="">
+                                <a class="wx_share">
+                                    <img src="image/icon_dot.png"/>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-item unfinish">
+                        <div class="box">
+                            <div class="">
+                                <div class="book-cover">
+                                    <img src="image/cover_1.jpg" />
+                                    <a class="nofinish_tag">未完成</a>
+                                </div>
+                            </div>
+                            <div class="boxflex">
+                                <p class="book-name">郑渊洁10年未出版</p>
+                                <p class="video-time">00:01:10</p>
+                            </div>
+                            <div class="">
+                                <p class="read-time">2017/05/09</p>
+                            </div>
+                            <div class="">
+                                <a class="wx_share">
+                                    <img src="image/icon_dot.png"/>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="row">
+            <div class="col-6 tab tab-home">
+                <a class="btn" href="home.html" target="_self">
+                    <div class="box">
+                        <span class="icon icon-yd "></span>
+                        <p class="boxflex">朗读者计划</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-6 tab tab-my active">
+                <a class="btn" href="my.html" target="_self">
+                    <div class="box">
+                        <span class="icon icon-my"></span>
+                        <p class="boxflex">我的</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <audio id="globalAudio" class="hide"></audio>
+</body>
+</html>
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="js/uiDialog.js"></script>
+<script type="text/javascript">
+$(function(){
+    var dialog = new Dialog();
+    var dom = $(".content-histroyinfo");
+    var box = $(".content-histroyinfo");
+    var globalAudio = $("#globalAudio");
+    $(".goback").on("click" ,function(){
+        history.go(-1);
+    });
+
+    var globalAPI = "http://marky.ngrok.cc/api"
+    //dialog.tip("正在获取数据");
+    $.ajax({
+        url: globalAPI+'/learn/history',
+        type: 'GET',
+        dataType: 'jsonp',
+        data:{},
+    })
+    .done(function(res) {
+        console.log(res);
+        if(res.code==0){
+            var data =res.data;
+            if(!$.isEmptyObject(data)){
+                var tmp="";
+                var weekArr = [];
+                for(var i in data){
+                    var item = data[i]
+                    var week = item["book"]["week"];
+
+                    if(weekArr.indexOf(week)<0){
+                        weekArr.push(week);
+                    }
+                }
+                weekArr = weekArr.sort();
+
+                if(weekArr.length){
+                    for(var w =0,wl = weekArr.length;w<wl;w++){
+                        tmp+='<div class="stage"><span>'+weekArr[w]+'</span></div>'
+                        for(var j in data){
+                            var item = data[j];
+                            if(item["book"]["week"] ==weekArr[w]){
+                                if(!item.audios || item.audios.length<1){
+                                    tmp+='<div class="list-item unfinish">'
+                                    tmp+='    <div class="box">'
+                                    tmp+='        <div class="boxflex">'
+                                    tmp+='            <div class="book-cover">'
+                                    tmp+='                <img src="'+item["book"]['icon']+'" />'
+                                    tmp+='                <a class="nofinish_tag"></a>'
+                                    tmp+='            </div>'
+                                    tmp+='        </div>'
+                                    tmp+='        <div class="boxflex">'
+                                    tmp+='            <p class="book-name">'+item['book']['name']+'</p>'
+                                    tmp+='            <p class="read-time">'+item['enddate']+'</p>'
+                                    tmp+='            <p class="video-time">'+item['duration']+'</p>'
+                                    tmp+='        </div>'
+                                    tmp+='        <div class="boxflex">'
+                                    tmp+='            <a class="wx_share unfinish" data-book-id="'+item['id']+'">'
+                                    tmp+='                <img src="image/icon_wx_share.png"/>'
+                                    tmp+='            </a>'
+                                    tmp+='        </div>'
+                                    tmp+='    </div>'
+                                    tmp+='</div>'
+                                }else{
+                                    tmp+='<div class="list-item">'
+                                    tmp+='    <div class="box">'
+                                    tmp+='        <div class="boxflex">'
+                                    tmp+='            <div class="book-cover">'
+                                    tmp+='                <img src="'+item["book"]['icon']+'" />'
+                                    tmp+='                <a class="play" data-audios="'+item.audios.join(",")+'"></a>'
+                                    tmp+='            </div>'
+                                    tmp+='        </div>'
+                                    tmp+='        <div class="boxflex">'
+                                    tmp+='            <p class="book-name">'+item['book']['name']+'</p>'
+                                    tmp+='            <p class="read-time">'+item['enddate']+'</p>'
+                                    tmp+='            <p class="video-time">'+item['duration']+'</p>'
+                                    tmp+='        </div>'
+                                    tmp+='        <div class="boxflex">'
+                                    tmp+='            <a class="wx_share" data-book-id="'+item['id']+'">'
+                                    tmp+='                <img src="image/icon_wx_share.png"/>'
+                                    tmp+='            </a>'
+                                    tmp+='        </div>'
+                                    tmp+='    </div>'
+                                    tmp+='</div>'
+                                } 
+                            }
+                        }
+                    }
+                }
+                dialog.destroy();
+                dom.find(".list").html(tmp);
+                dom.fadeIn(600)
+            }else{
+                dialog.tip({"msg":"用户数据错误","time":1600});
+            }
+        }else{
+            dialog.tip({"msg":"用户数据拉取失败","time":1600});
+        }
+    })
+    .fail(function() {
+        dialog.tip({"msg":"用户数据拉取失败","time":1600});
+    })
+    //播放声音
+    function playAudio(audios,i){
+        var audios = audios;
+        var i = i;
+        var len = audios.length;
+        globalAudio.off("ended");
+        if(!audios){
+            dialog.alert("未找到录音文件");
+        }else if(i<0 || i>=len){
+            globalAudio[0].pause();
+            dialog.destroy();
+        }else{
+            var curaudio = audios[i];
+            globalAudio.attr('src',curaudio);
+            globalAudio[0].play();
+            globalAudio.on("ended" ,function(){
+                playAudio(audios,i+1)
+            })
+        }
+    }
+    dom.on("click",".play", function(){
+        var that= $(this);
+        var audios = that.attr("data-audios");
+        if(audios){
+            audios = audios.split(",")
+        }else{
+            dialog.tip({"msg":"音频获取失败","time":1200})
+            return;
+        }
+        if(that.hasClass('playing')){
+            that.removeClass('playing')
+            that.html('<img src="image/icon_toplay.png">');
+            globalAudio[0].pause();
+            globalAudio.off("ended")
+        }else{
+            that.addClass('playing')
+            that.html('<img src="image/st_pause.png">')
+            playAudio(audios,0)
+        }  
+    })
+    /*微信分享书*/
+    dom.on("click" ,".wx_share:not(unfinish)" ,function(){
+        var that = $(this);
+        var bookID = that.attr("data-book-id");
+        //分享当前书 bookid
+        $.ajax({
+            url: globalAPI+'/learn/jsshare',
+            type: 'GET',
+            dataType: 'jsonp',
+            data: {"id": bookID},
+        })
+        .done(function(res) {
+            if(res.code==0){
+                window.top.location.href = res.data.url;
+            }else{
+                dialog.tip({"msg":"分享信息失败","time":1200})
+            }
+        })
+        .fail(function() {
+            dialog.tip({"msg":"分享信息失败","time":1200})
+        })
+    })
+    box.on("click" ,".stage" ,function(){
+        var that = $(this);
+        var stages = box.find(".stage");
+        stages.addClass('slideup');
+        that.removeClass('slideup')
+    })
+})
+</script>

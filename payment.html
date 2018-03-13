@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    
+    <meta content="【亲子阅读计划】" name="description" />
+    <meta content="" name="author" />
+    <title>【亲子阅读计划】</title>
+    <script type="text/javascript" src="js/flexible_css.js"></script>
+    <script type="text/javascript" src="js/flexible.js"></script>
+
+    <link href="css/reset.css" rel="stylesheet" type="text/css"/>
+    <link href="css/main.css" rel="stylesheet" type="text/css"/>
+    <link href="css/uiDialog.css" rel="stylesheet" type="text/css"/>
+    <style type="text/css">
+    .layout-payment{
+    	padding-bottom: 1.6rem;
+    }
+    .layout-payment,.bzj-intro{
+    	display: block;
+    	min-height:100%;
+    	overflow: hidden;
+    }
+    .footer{
+    	background-color:#f3eddd;
+    }
+    .footer>div{
+    	border-top: 1px solid #fe6a24;
+    }
+    .bzj-intro{
+    	overflow: scroll;
+    	height: 100%;
+    }
+    .priceblock{
+    	display: block;
+    	text-align: right;
+    	position: relative;
+    }
+	.price {
+	    background-color: #f5eede;
+	    color: #fe6a24;
+	    font-size: 0.56rem;
+	    line-height: 1;
+	    margin-top: 0.2666666rem;
+	    padding-right: 0.6rem;
+	}
+	.price.active{
+		font-size: 0.6rem;
+		margin: 0;
+		line-height: 1.6rem;
+		font-weight: 400;
+	}
+    .intro {
+	    background-color: #cb1f07;
+	    border-radius: 0.0666666rem;
+	    color: #fff;
+	    display: block;
+	    font-size: 0.32rem;
+	    line-height: 0.42666666rem;
+	    height: 0.42666666rem;
+	    padding: 0 0.2666666rem;
+	    position: absolute;
+	    right: 0.68rem;
+	    top: 1rem;
+	}
+    .btn_sign{
+    	display: block;
+    	background-color: #fe6a24;
+    	margin-top:-1px;
+    	padding-right: 0.6rem;
+    	padding-left: 0.6rem;
+    	font-size: 0.56rem;
+    }
+    .btn_sign.disable{
+		background-color:#a7a5a6;
+    }
+    </style>
+</head>
+<body>
+	<div class="layout-payment hide">
+	    <div class="bzj-intro">
+	    </div>
+	    <div class="footer">
+	    	<div class="box">
+	    		<div class="boxflex priceblock">
+					<p class="price">124元/月</p>
+					<p class="intro">还剩3天5小时</p>
+	    		</div>
+	    		<a class="btn_sign disable">已报名用户不能购买</a>
+	    	</div>
+	    </div>
+	</div>
+    <!--保证金提示-->
+    <div class="layout layout-payment-tip-box hide">
+        <div class="layout-payment-tip">
+            <div class="tip-msg">
+                <p class="title">保证金说明</p>
+                <p>初级及中级：爸爸读，孩子听。</p>
+                <p>高级：读后和孩子一起种一颗种子，说一说过程<p>
+            </div>
+            <a class="close close-payment-tip">×</a>
+            <a class="readnote">我已经阅读</a>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="js/uiDialog.js"></script>
+<script type="text/javascript">
+$(function(){
+	var dialog = new Dialog();
+	function getQueryString(e) {
+        var t = new RegExp("(^|&)" + e + "=([^&]*)(&|$)"),
+            n = window.location.search.substr(1).match(t);
+        return null != n ? unescape(n[2]) : null
+    }
+	var id = getQueryString("id") || 1;
+	var money,tip,time,paytip;
+	$(".layout-payment").css("height",$(window).height());
+	$(".btn_sign").on("click" ,function(){
+		if($(this).hasClass('disable')){
+			return;
+		}
+		var tipbox= $(".layout-payment-tip-box");
+		tipbox.find('.tip-msg').html(paytip);
+		tipbox.show();
+	})
+	$(".close-payment-tip").on("click" ,function(){
+		$(".layout-payment-tip-box").hide();
+	})
+	
+	$.ajax({
+		url: '/api/group/index',
+		type: 'POST',
+		dataType: 'jsonp',
+		data: {id:id},
+	})
+	.done(function(res) {
+		if(res.code==0){
+			console.log(res)
+			var data = res.data;
+			money = data.money;
+			$(".bzj-intro").html(data.notice);
+			$(".price").html(data.button_title);
+			$(".btn_sign").html(data.button_txt);
+			tip = data.tips;
+			paytip = data.paytips;
+			time = data.end_date;
+			if(data.time && data.time.RTS){
+				$(".intro").html(data.time.RTS);
+				$(".price").removeClass('active');
+			}else{
+				$(".intro").remove();
+				$(".price").addClass('active');
+			}
+			if(+new Date(time.replace(/-/g, "/")) < +new Date()){
+				$(".btn_sign").addClass('disable');
+			}else{
+				$(".btn_sign").removeClass('disable');
+			}
+			if(data.pay_status=="0"){
+				$(".btn_sign").addClass('disable');
+			}else{
+				$(".btn_sign").removeClass('disable');
+			}
+			$(".layout-payment").fadeIn();
+		}else{
+			dialog.tip({"msg":"订单号获取失败","time":2000});
+		}
+	})
+	.fail(function() {
+		dialog.tip({"msg":"订单号获取失败","time":2000});
+	})
+	
+	wx.ready(function () {
+		//TODO 判断时间是否过期
+		$(".readnote").on("click" ,function(){
+			dialog.tip("正在进入微信支付");
+			if(!time){
+				dialog.tip({"msg":"参数错误，下单失败","time":2000});
+				return;
+			}else if(+new Date(time.replace(/-/g, "/")) < +new Date()){
+				dialog.tip({"msg": tip,"time":2000});
+				return;
+			}else if(!money){
+				dialog.tip({"msg":"支付金额错误","time":1200});
+				return;
+			}else{
+				$.ajax({
+					url: '/api/payment/create-deposit',
+					type: 'POST',
+					dataType: 'jsonp',
+					data: {money: money,group:id},
+				})
+				.done(function(res) {
+					console.log(res)
+					if(res.code==0){
+						var data = res.data;
+						getOrder({'id':data.id,"module":data.module,"money":money});
+					}else{
+						dialog.tip({"msg":"订单号获取失败","time":2000});
+					}
+				})
+				.fail(function() {
+					dialog.tip({"msg":"订单号获取失败","time":2000});
+				})
+			}
+		})
+		/*获取支付订单*/
+		function getOrder(opt){
+			$.ajax({
+				url: '/api/payment/pay',
+				type: 'POST',
+				dataType: 'jsonp',
+				data: {
+					"id":opt.id,
+					"type" :"weixin",
+					"module" : opt.module,
+					"money" : opt.money,
+				},
+			})
+			.done(function(res) {
+				if(res.code==0){
+					goWXpay(res)
+				}else{
+					dialog.tip({"msg":"订单创建失败","time":2000});
+				}
+			})
+			.fail(function() {
+				dialog.tip({"msg":"订单创建失败","time":2000});
+			})
+		}
+		/*微信支付*/
+		function goWXpay(ret){
+		    wx.chooseWXPay({
+		        timestamp: ret.data.timestamp,
+		        nonceStr: ret.data.nonceStr,
+		        package: ret.data.package,
+		        signType: ret.data.signType,
+		        paySign: ret.data.paySign,
+		        success: function (res) {
+		            if (res.errMsg == 'chooseWXPay:ok') {
+		            	dialog.destroy();
+		                window.location.replace('register.html'+id);
+		            } else {
+		                dialog.tip({"msg":"支付失败","time":2000});
+		            }
+		        },
+		        cancel: function (res) {
+		        },
+		        fail: function(res){
+		        	dialog.tip({"msg":"微信支付失败","time":2000})
+		        }
+		    });
+		}
+	});
+	wx.error(function (res) {  
+    	dialog.tip({"msg":"微信初始化失败","time":2000})  
+    });
+})
+</script>

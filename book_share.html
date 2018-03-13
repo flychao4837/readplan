@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    
+    <meta content="【亲子阅读计划】" name="description" />
+    <meta content="" name="author" />
+    <title>【亲子阅读计划】</title>
+
+    <script type="text/javascript" src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/flexible_css.js"></script>
+    <script type="text/javascript" src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/flexible.js"></script>
+
+    <link href="css/reset.css" rel="stylesheet" type="text/css"/>
+    <link href="css/share.css" rel="stylesheet" type="text/css"/>
+    <link href="http://datainfo.b0.upaiyun.com/css/uiDialog.css" rel="stylesheet" type="text/css"/>
+    <link href="//cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css" rel="stylesheet" type="text/css"/>
+
+</head>
+<body>
+    <div class="content content-home book-share">
+        <div class="banner">
+            <!--幻灯改版-->
+            <div class="home-device">
+                <div class="swiper-main">
+                    <div class="swiper-container swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="cover">
+                                    <img src="image/cover_1.jpg">
+                                    <a class="listen default my">        
+                                        <img src="http://datainfo.b0.upaiyun.com/image/user_head.png">
+                                    </a>
+                                </div>
+                                <p class="reader">我是<span class="font-warning">.</span></p>
+                                <p class="title">正在读:<span class="font-warning">.</span></p>
+                                <div class="control">
+                                  <img src="image/share_video.png" />
+                                  <a class="btn-play play" data-media="http://datainfo.b0.upaiyun.com//audios/1/3-3-0.mp3,http://datainfo.b0.upaiyun.com//audios/1/3-3-0.mp3,http://datainfo.b0.upaiyun.com//audios/1/3-3-0.mp3" data-time="14"></a>
+                                </div>
+                                <p class="time font-warning">00:00:14</p>
+                                <p class="operate-tip">点击播放我的阅读</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="qcode-box">
+          <div class="clear">
+            <div class="code left">
+              <img src="image/code.png" />
+            </div>
+            <div class="tips left">
+              <p>识别二维码关注【亲子阅读计划】</p>
+              <p class="font-warning">通过阅读 爱上阅读<p>
+            </div>
+          </div>
+        </div>
+    </div>
+    <audio id="globalAudio" class="hide"></audio>
+</body>
+</html>
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/1.9.1/jquery.js"></script>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
+<script type="text/javascript" src="http://datainfo.b0.upaiyun.com/js/uiDialog.js"></script>
+<script type="text/javascript" src="//cdn.bootcss.com/Swiper/3.4.2/js/swiper.min.js"></script>
+
+<script type="text/javascript">
+$(function(){
+    var globalAudio = $("#globalAudio");
+    var globalAPI = "/api"
+    var dialog = new Dialog();
+    var dom = $(".content-home");
+    var shareData = {
+        title: "",
+        desc: "",
+        link: "",
+        imgUrl: ""
+    };
+    var playTimer,startTime,endTime,recordDuration=0,playstatus=true,duration,playduration;
+    function stopTiming(){
+      recordDuration =0;
+      startTime=0;
+      endTime =0;
+      clearTimeout(playTimer);
+    }
+    function countdown(){
+      if(!playstatus){
+        stopTiming();
+        return;
+      }
+      startTime = +new Date();
+      playTimer = setTimeout(function(){
+        recordDuration += (+new Date() - startTime)/1000;
+        if(recordDuration>3600){
+            stopTiming()
+            return;
+        }
+        playduration = duration - recordDuration + 0.5;
+        playduration = playduration >=0 ? playduration : 0;
+        fillTimeStr(formatTime(playduration));
+        countdown();
+      },50)
+    }
+    function fillTimeStr(str){
+      dom.find(".time").html(str);
+    }
+    function playMedia(audiolist,cb){
+        console.log(audiolist.length)
+        if(audiolist.length){
+            var addr = audiolist.shift();
+            globalAudio.attr('src',addr);
+            globalAudio[0].play();
+            globalAudio.one("play" ,function(){
+              startTime=0;
+              endTime =0;
+              countdown();
+            });
+            globalAudio.one("error" ,function(){
+              playstatus = false;
+              dom.find(".play.pause").removeClass('pause');
+              dialog.tip({"msg":"文件错误，播放失败","time":2000});
+              stopTiming();
+            })
+            globalAudio.one("ended", function(){
+                playMedia(audiolist,cb);
+            });
+        }else{
+            if(typeof(cb)==="function"){
+                cb.call(cb);
+            }
+        }
+    }
+    $(".home-device").on("click" ,".play", function(){
+        var that = $(this);
+        var audiolist = that.attr("data-media").split(",");
+        duration = that.attr("data-time");
+        globalAudio[0].pause();
+        globalAudio.off("ended");
+        playstatus = true;
+        if(that.hasClass('pause')){
+            globalAudio[0].pause();
+            that.removeClass('pause');
+            dom.find(".time").html(formatTime(duration));
+            stopTiming();
+        }else{
+            $(".home-device").find(".listen.pause").removeClass('pause');
+            if(audiolist.length){
+                that.addClass('pause');
+                playMedia(audiolist,function(){
+                    globalAudio[0].pause();
+                    that.removeClass('pause');
+                    globalAudio.off("play");
+                    globalAudio.off("error");
+                    globalAudio.off("ended");
+                    stopTiming();
+                    playstatus = false;
+                    dom.find(".time").html(formatTime(duration));
+                })
+            }else{
+                playstatus = false;
+                console.log("没有找到录音地址")
+            }
+        }
+    })
+    function getQueryString(e) {
+        var t = new RegExp("(^|&)" + e + "=([^&]*)(&|$)"),
+            n = window.location.search.substr(1).match(t);
+        return null != n ? unescape(n[2]) : null
+    }
+    function formatTime(t){
+      if(isNaN(t)){
+        return "00:00:00";
+      }
+      var h = parseInt(t/3600);
+      var m,s;
+      var dd = t%3600
+      m = parseInt(dd/60);
+      s = parseInt(dd%60);
+      h = h>9 ? h : "0"+h;
+      s = s>9 ? s : "0"+s;
+      s = s ==60? "00" : s;
+      m = s ==60? ++m :m;
+
+      m = m>9 ? m : "0"+m;
+      m = m ==60? "00" : m;
+      return h+":"+m+":"+s
+    }
+    function getbookInfo(){
+        var id = getQueryString("id");
+        $.ajax({
+            url: globalAPI+'/learn/share',
+            type: 'GET',
+            dataType: 'jsonp',
+            data: {id: id},
+        })
+        .done(function(res) {
+            if(res.code==0){
+                var plan = res.data.plan;
+                var tmp="";
+                for(var i in plan){
+                  var item = plan[i]
+                  tmp+='<div data-book-id="'+item['id']+'" class="swiper-slide swiper-slide-active">'
+                  tmp+='    <div class="cover">'
+                  tmp+='        <img src="'+item['book']['icon']+'">'
+                  tmp+='        <a class="listen default my">'        
+                  tmp+='            <img src="'+item['recommend']['user_headimgurl']+'">'        
+                  tmp+='        </a>'
+                  tmp+='    </div>'
+
+                  tmp+='    <p class="reader">我是<span class="font-warning">'+item['recommend']['user_name']+'</span></p>'
+                  tmp+='    <p class="title">正在读:<span class="font-warning">'+item['book']['name']+'</span></p>'
+                  tmp+='    <div class="control">'
+                  tmp+='      <img src="image/share_video.png" />'
+                  tmp+='      <a class="btn-play play" data-media="'+item['recommend']['audios'].join(",")+'" data-time="'+item['recommend']['duration']+'"></a>'
+                  tmp+='    </div>'
+                  tmp+='    <p class="time font-warning">'+formatTime(item['recommend']['duration'])+'</p>'
+                  tmp+='    <p class="operate-tip">点击播放我的阅读</p>'
+
+                  tmp+='</div>'
+                }
+                $(".swiper-wrapper").html(tmp);
+                shareData.title = item['share']['title'];
+                shareData.desc = item['share']['desc'];
+                shareData.imgUrl = item['share']['imgUrl'];
+                //swiper.init();
+                dom.removeClass('hide')
+            }else{
+                dialog.tip({"msg":"分享数据获取失败","time":2000})
+            }
+        })
+        .fail(function() {
+            dialog.tip({"msg":"分享数据获取失败","time":2000})
+        })
+    }
+    getbookInfo();
+    function getConfigInfo(){
+        var id = getQueryString("id");
+        $.ajax({
+            url: globalAPI+'/learn/jsshare',
+            type: 'GET',
+            dataType: 'jsonp',
+            data: {id: id},
+        })
+        .done(function(res) {
+            if(res.code==0){
+                wx.config({
+                    appId: res.data.appId,
+                    timestamp: res.data.timestamp,
+                    nonceStr: res.data.nonceStr,
+                    signature: res.data.signature,
+                    jsApiList: [
+                        'checkJsApi',
+                        'onMenuShareTimeline',
+                        'onMenuShareAppMessage',
+                        'onMenuShareQQ',
+                        'onMenuShareWeibo',
+                        'onMenuShareQZone',
+                    ]
+                });
+                shareData.link = res.url;
+            }else{
+                dialog.tip({"msg":"分享数据获取失败","time":2000});
+            }
+        })
+        .fail(function() {
+            dialog.tip({"msg":"分享数据获取失败","time":2000});
+        }) 
+    }
+    getConfigInfo();
+    wx.ready(function(){ 
+        wx.onMenuShareTimeline({
+          title: shareData.title,
+          link: shareData.link,
+          imgUrl: shareData.imgUrl,
+          success: function (res) {
+            dialog.tip({"msg":"分享成功"});
+            window.location.href="home.html";
+          },
+          cancel: function (res) {
+            
+          },
+          fail: function (res) {
+            
+          }
+        });
+        wx.onMenuShareAppMessage({
+          title: shareData.title,
+          desc : shareData.desc,
+          link: shareData.link,
+          imgUrl: shareData.imgUrl,
+          success: function (res) {
+            dialog.tip({"msg":"分享成功"});
+            window.location.href="home.html";
+          },
+          cancel: function (res) {
+            
+          },
+          fail: function (res) {
+            
+          }
+        });
+        wx.onMenuShareQQ({
+          title: shareData.title,
+          desc : shareData.desc,
+          link: shareData.link,
+          imgUrl: shareData.imgUrl,
+          success: function (res) {
+            dialog.tip({"msg":"分享成功"});
+            window.location.href="home.html";
+          },
+          cancel: function (res) {
+            
+          },
+          fail: function (res) {
+            
+          }
+        });
+        wx.onMenuShareWeibo({
+          title: shareData.title,
+          desc : shareData.desc,
+          link: shareData.link,
+          imgUrl: shareData.imgUrl,
+          success: function (res) {
+            dialog.tip({"msg":"分享成功"});
+            window.location.href="home.html";
+          },
+          cancel: function (res) {
+            
+          },
+          fail: function (res) {
+            
+          }
+        });
+        wx.onMenuShareQZone({
+          title: shareData.title,
+          desc : shareData.desc,
+          link: shareData.link,
+          imgUrl: shareData.imgUrl,
+          success: function (res) {
+            dialog.tip({"msg":"分享成功"});
+            window.location.href="home.html";
+          },
+          cancel: function (res) {
+            
+          },
+          fail: function (res) {
+            
+          }
+        });
+    })
+    
+})
+</script>

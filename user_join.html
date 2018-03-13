@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    
+    <meta content="【亲子阅读计划】" name="description" />
+    <meta content="" name="author" />
+    <title>【亲子阅读计划】</title>
+    <script type="text/javascript" src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/flexible_css.js"></script>
+    <script type="text/javascript" src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/flexible.js"></script>
+
+
+    <link href="css/reset.css" rel="stylesheet" type="text/css"/>
+    <link href="css/share.css" rel="stylesheet" type="text/css"/>
+    <link href="http://datainfo.b0.upaiyun.com/css/uiDialog.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+    <div class="content content-wxshare hide">
+
+        <div class="tip-msg">
+            <div class="user-icon">
+                <div class="user_img">
+                    <img src="" class="headimg">
+                </div>
+            </div>
+            <p class="reader">我是<span class="font-warning">段全鑫</span></p>
+            <p class="title">加入<span class="font-warning">亲子共读100本计划</span></p>
+            <div class="medal-box">
+                <div class="bless">
+                    <img src="image/share_slogn.png" />
+                </div>
+                <div class="welcome-tip">
+                    <img src="http://datainfo.b0.upaiyun.com/image/tip_msg.png" />
+                </div>
+            </div>
+
+        </div>
+        <div class="qcode-box">
+          <div class="clear">
+            <div class="code left">
+              <img src="image/code.png" />
+            </div>
+            <div class="tips left">
+              <p>识别二维码关注【亲子阅读计划】</p>
+              <p class="font-warning">通过阅读 爱上阅读<p>
+            </div>
+          </div>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/1.9.1/jquery.js"></script>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
+<script type="text/javascript" src="http://datainfo.b0.upaiyun.com/js/uiDialog.js"></script>
+<script type="text/javascript">
+$(function(){
+    var shareData = {
+        title: "",
+        desc: "",
+        link: "",
+        imgUrl: ""
+    };
+    var dialog = new Dialog()
+
+    var globalAPI = "/api"
+    function getQueryString(e) {
+        var t = new RegExp("(^|&)" + e + "=([^&]*)(&|$)"),
+            n = window.location.search.substr(1).match(t);
+        return null != n ? unescape(n[2]) : null
+    }
+    var id = getQueryString("id");
+    getConfigInfo(id);
+    function getConfigInfo(id){
+        $.ajax({
+            url: globalAPI+'/user/join-share',
+            type: 'POST',
+            dataType: 'jsonp',
+            data: {id: id},
+        })
+        .done(function(res) {
+            if(res.code==0){
+                wx.config({
+                    appId: res.data.appId,
+                    timestamp: res.data.timestamp,
+                    nonceStr: res.data.nonceStr,
+                    signature: res.data.signature,
+                    jsApiList: [
+                        'checkJsApi',
+                        'onMenuShareTimeline',
+                        'onMenuShareAppMessage',
+                        'onMenuShareQQ',
+                        'onMenuShareWeibo',
+                        'onMenuShareQZone',
+                    ]
+                });
+                var data = res.data
+                shareData.link = data.url;
+                $(".headimg").attr("src",data.user.headimgurl);
+                $(".user-name").html(data.user.name);
+                shareData.title = data.user.name+"加入了亲子共读100本计划";
+                shareData.desc = data.user.name+"加入了亲子共读100本计划";
+                shareData.imgUrl = data.user.headimgurl;
+                $(".reader>span").htm(data.user.name);
+                $(".content-wxshare").show();
+            }else{
+                dialog.tip({"msg":"分享数据获取失败","time":2000});
+            }
+        })
+        .fail(function() {
+            dialog.tip({"msg":"分享数据获取失败","time":2000});
+        }) 
+    }
+
+    wx.ready(function(){
+        console.log(shareData);
+        wx.onMenuShareTimeline({
+          title: shareData.title,
+          link: shareData.link,
+          imgUrl: shareData.imgUrl,
+          success: function (res) {
+            dialog.tip({"msg":"分享成功"});
+            window.location.href="home.html";
+          },
+          cancel: function (res) {
+            
+          },
+          fail: function (res) {
+            
+          }
+        });
+        wx.onMenuShareAppMessage({
+          title: shareData.title,
+          desc : shareData.desc,
+          link: shareData.link,
+          imgUrl: shareData.imgUrl,
+          success: function (res) {
+            dialog.tip({"msg":"分享成功"});
+            window.location.href="home.html";
+          },
+          cancel: function (res) {
+            
+          },
+          fail: function (res) {
+            
+          }
+        });
+        wx.onMenuShareQQ({
+          title: shareData.title,
+          desc : shareData.desc,
+          link: shareData.link,
+          imgUrl: shareData.imgUrl,
+          success: function (res) {
+            dialog.tip({"msg":"分享成功"});
+            window.location.href="home.html";
+          },
+          cancel: function (res) {
+            
+          },
+          fail: function (res) {
+            
+          }
+        });
+        wx.onMenuShareWeibo({
+          title: shareData.title,
+          desc : shareData.desc,
+          link: shareData.link,
+          imgUrl: shareData.imgUrl,
+          success: function (res) {
+            dialog.tip({"msg":"分享成功"});
+            window.location.href="home.html";
+          },
+          cancel: function (res) {
+            
+          },
+          fail: function (res) {
+            
+          }
+        });
+        wx.onMenuShareQZone({
+          title: shareData.title,
+          desc : shareData.desc,
+          link: shareData.link,
+          imgUrl: shareData.imgUrl,
+          success: function (res) {
+            dialog.tip({"msg":"分享成功"});
+            window.location.href="home.html";
+          },
+          cancel: function (res) {
+            
+          },
+          fail: function (res) {
+            
+          }
+        });
+    })
+})
+</script>

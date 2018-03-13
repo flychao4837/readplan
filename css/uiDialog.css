@@ -1,0 +1,70 @@
+/* v 0.0.2*/
+/* global */
+.dialog_global_layout{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,.3);
+}
+.btn_list{
+    height: 44px;
+    line-height: 44px;
+    text-align: center;
+}
+/* tip */
+.tip_msg {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 5px;
+    color: #ccc;
+    font-size: 0.5rem;
+    left: 50%;
+    line-height: 120%;
+    margin-left: -31%;
+    margin-top: -1rem;
+    min-height: 1.5rem;
+    padding: 20px;
+    position: absolute;
+    text-align: center;
+    top: 40%;
+    vertical-align: middle;
+    width: 62%;
+}
+.tip_msg.alert{
+    background-image: url('http://datainfo.b0.upaiyun.com/image/alert.png');
+    background-repeat: no-repeat;
+    background-size: 24px;
+    background-position: 20px center;
+    text-indent: 24px;
+}
+.tip_msg.tip{
+    background-image: url('http://datainfo.b0.upaiyun.com/image/tip.png');
+    background-repeat: no-repeat;
+    background-size: 24px;
+    background-position: 20px center;
+    text-indent: 24px;
+}
+
+/* alert */
+.alert_content{
+    background-color: #ccc;
+    border-radius: 5px;
+    height: 120px;
+    left: 50%;
+    margin-left: -100px;
+    margin-top: -60px;
+    position: fixed;
+    top: 50%;
+    width: 200px;
+}
+.alert_msg{
+    padding:10px;
+    height: 60px;
+    background-color: rgba(255,255,255,.75);
+    line-height: 80px;
+    text-align: center;
+    border-radius: 5px 5px 0 0;
+}
+
+

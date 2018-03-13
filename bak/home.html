@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    
+    <meta content="【亲子阅读计划】" name="description" />
+    <meta content="" name="author" />
+    <title>【亲子阅读计划】</title>
+    <script type="text/javascript" src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/flexible_css.js"></script>
+    <script type="text/javascript" src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/flexible.js"></script>
+
+    <link href="http://datainfo.b0.upaiyun.com/css/reset.css" rel="stylesheet" type="text/css"/>
+    <link href="css/main.css" rel="stylesheet" type="text/css"/>
+    <link href="//cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//cdn.bootcss.com/switchery/0.8.2/switchery.min.css" rel="stylesheet" type="text/css"/>
+    <link href="http://datainfo.b0.upaiyun.com/css/animate.min.css" rel="stylesheet" type="text/css"/>
+    <link href="http://datainfo.b0.upaiyun.com/css/uiDialog.css" rel="stylesheet" type="text/css"/>
+    <link href="//cdn.bootcss.com/jquery-jcrop/0.9.12/css/jquery.Jcrop.min.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+    <div class="content content-home hide">
+        <div class="banner">
+            <!--幻灯改版-->
+            <div class="home-device">
+                <div class="swiper-main">
+                    <div class="swiper-container swiper">
+                        <div class="swiper-wrapper">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="pagination pagination-box">
+                    <div class="pagination-home"></div>
+                </div>
+            </div>
+            <!--幻灯改版-->
+            <div class="task_info">
+                <p>第<span class="num">XX</span>本</p>
+                <p><span class="week">2周</span></p>
+            </div>
+            <a class="task-tips"></a>
+        </div>
+        <div class="action">
+            <a class="recorder">
+                <i class="icon icon_record"></i>
+            </a>
+            <div class="switch-box">
+                <span class="switchery switchery-default off" >
+                    <small></small>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="content content-my hide">
+        <div class="user">
+            <div class="fz_0 textcenter">
+                <div class="user_img">
+                    <img src="http://datainfo.b0.upaiyun.com/image/default_head.png">
+                </div>
+            </div>
+            <p class="textcenter user_name"> </p>
+        </div>
+        <div class="list fz_0">
+            <div class="list-item">
+                <div class="box fz_0">
+                    <div class="icon icon_user"></div>
+                    <a class="boxflex title userinfo" href="userinfo.html" target="_self">个人信息</a>
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="box fz_0">
+                    <div class="icon icon_progress"></div>
+                    <a class="boxflex title progress" href="progress.html" target="_self">进度及评分<span class="small font-warning"></span></a>
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="box fz_0">
+                    <div class="icon icon_history"></div>
+                    <a class="boxflex title history" href="history.html" target="_self">阅读历史<span class="small font-warning"></span></a>
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="box">
+                    <div class="icon icon_promiss"></div>
+                    <a class="boxflex title deposit" href="deposit.html" target="_self">保证金<span class="small font-warning"></span></a>
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="box">
+                    <div class="icon icon_help"></div>
+                    <a class="boxflex title" href="help.html" target="_self">帮助</a>
+                </div>
+            </div>
+        </div>
+        <div class="textcenter user-status">
+            <a class="btn pause-read">申请阅读暂停</a>
+        </div>  
+    </div>
+    <div class="footer hide">
+        <div class="row">
+            <div class="col-6 tab tab-home active">
+                <a class="btn">
+                    <div class="box">
+                        <span class="icon icon-yd "></span>
+                        <p class="boxflex">朗读者计划</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-6 tab tab-my">
+                <a class="btn">
+                    <div class="box">
+                        <span class="icon icon-my"></span>
+                        <p class="boxflex">我的</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        
+    </div>
+
+    <audio id="globalAudio" class="hide"></audio>
+    <!--书下载提示 、公用信息提示弹层-->
+    <div class="layout common-tip-box hide">
+        <div class="layout-task-tip">
+            <div class="tip-msg">
+                <p class="title font-warning">提示</p>
+                <p class="notice">0</p>
+            </div>
+            <a class="close-common-tip"></a>
+        </div>
+    </div>
+    <!--公用confirm弹层-->
+    <div class="layout layout-confirm-box hide">
+        <div class="layout-setlevelstatus-tip">
+            <div class="tip-msg">
+                <div class="info">
+                    <p>0</p>
+                </div>    
+                <div class="upload-btn">
+                    <a class="cancel">取消</a>
+                    <a class="ok">确定</a>
+                </div>
+            </div>
+            <a class="close close-confirm-tip">×</a>
+        </div>
+    </div>
+    <div class="layout layout-download-tip-box hide">
+        <div class="layout-task-tip">
+            <div class="tip-msg">
+                <p class="title font-warning">提示</p>
+                <p class="notice">0</p>
+            </div>
+            <a class="close close-download-tip"></a>
+        </div>
+    </div>
+    <!--周任务提示-->
+    <div class="layout layout-task-tip-box hide">
+        <div class="layout-task-tip">
+            <div class="tip-msg">
+                <p class="title font-warning">本周任务</p>
+                <p>一周我们为您和孩子准备了5本书</p>
+                <p>完成3本书阅读即可，关闭提示窗显示当前图书阅读要求<p>
+            </div>
+            <a class="close close-task-tip"></a>
+        </div>
+    </div>
+    <!--周任务进度提示-->
+    <div class="layout layout-task-progress-box hide">
+        <div class="layout-progress-tip">
+            <div class="tip-msg">
+                <div class="user-icon">
+                    <div class="user_img">
+                        <img src="http://datainfo.b0.upaiyun.com/image/user_head.png">
+                    </div>
+                    <div class="ribbon">
+                        <div class="icon-ribbon">
+                            <p class="user-name">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="slogn">
+                    <img src="http://datainfo.b0.upaiyun.com/image/slogn.png"/>
+                </div>
+                <p class="title">计划进度</p>
+                <div class="progress-box">
+                    <div class="progress-bar">
+                        <span class="progress-cover"></span>
+                    </div>
+                </div>
+                <p class="read-info">坚持了<span class="font-warning days">1</span>天&nbsp;&nbsp;累计阅读了<span class="font-warning time">0</span>分钟</p>
+                <div class="share-box">
+                    <a class="btn-share">
+                        <span>立即分享</span>
+                    </a>
+                </div>
+            </div>
+            <a class="close close-task-progress"></a>
+        </div>
+    </div>
+    <!--首次加入 新人勋章提示-->
+    <div class="layout layout-newer-box hide">
+        <div class="layout-levelshow-tip">
+            <div class="tip-msg">
+                <div class="user-icon">
+                    <div class="user_img">
+                        <img src="http://datainfo.b0.upaiyun.com/image/user_head.png" class="headimg">
+                    </div>
+                    <div class="ribbon">
+                        <div class="icon-ribbon">
+                            <p class="user-name">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="medal-box">
+                    <div class="bless">
+                        <img src="http://datainfo.b0.upaiyun.com/image/tip_con_100.png" />
+                    </div>
+                    <div class="welcome-tip">
+                        <img src="http://datainfo.b0.upaiyun.com/image/tip_msg.png" />
+                    </div>
+                </div>
+                <div class="share-box">
+                    <a class="btn-share btn-share-level">
+                        <span>立即分享</span>
+                    </a>
+                </div>
+            </div>
+            <a class="close close-levelshow"></a>
+        </div>
+    </div>
+    <!--朗读进度第一阶段提示-->
+    <div class="layout layout-levelshow-box hide">
+        <div class="layout-levelshow-tip">
+            <div class="tip-msg">
+                <div class="user-icon">
+                    <div class="user_img">
+                        <img src="http://datainfo.b0.upaiyun.com/image/user_head.png" class="headimg">
+                    </div>
+                    <div class="ribbon">
+                        <div class="icon-ribbon">
+                            <p class="user-name">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="medal-box">
+                    <div class="bless">
+                        <img src="http://datainfo.b0.upaiyun.com/image/tip_con_1.png" />
+                    </div>
+                    <div class="medal-level">
+                        <img src="http://datainfo.b0.upaiyun.com/image/medal_1.png" />
+                    </div>
+                </div>
+                <p class="step-tip">第<span class="step font-warning">1</span>阶段朗读</p>
+                <p class="read-info">已完成了<span class="weeks font-warning">5</span>周<span class="books font-warning">22</span>本<span class="words font-warning">0</span>万字</p>
+                <div class="share-box">
+                    <a class="btn-share btn-share-level">
+                        <span>立即分享</span>
+                    </a>
+                </div>
+            </div>
+            <a class="close close-levelshow"></a>
+        </div>
+    </div>
+    <!--完成100本 任务提示-->
+    <div class="layout layout-taskdone-box hide">
+        <div class="layout-levelshow-tip">
+            <div class="tip-msg">
+                <div class="user-icon">
+                    <div class="user_img">
+                        <img src="http://datainfo.b0.upaiyun.com/image/user_head.png" class="headimg">
+                    </div>
+                    <div class="ribbon">
+                        <div class="icon-ribbon">
+                            <p class="user-name"> </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="medal-box">
+                    <div class="medal-level">
+                        <img src="http://datainfo.b0.upaiyun.com/image/medal_1.png" />
+                        <img src="http://datainfo.b0.upaiyun.com/image/medal_2.png" />
+                        <img src="http://datainfo.b0.upaiyun.com/image/medal_3.png" />
+                    </div>
+                    <div class="bless">
+                        <img src="http://datainfo.b0.upaiyun.com/image/tip_con_1.png" />
+                        <p class="done-tip">已完成亲子共读100本计划</p>
+                    </div>
+                </div>
+                <p class="read-info">已完成了<span class="weeks font-warning">5</span>周<span class="books font-warning">22</span>本<span class="words font-warning">2.4</span>万字</p>
+                <div class="share-box">
+                    <a class="btn-share btn-share-level">
+                        <span>立即分享</span>
+                    </a>
+                </div>
+            </div>
+            <a class="close close-levelshow"></a>
+        </div>
+    </div>
+    <!--全屏录音页面-->
+    <div class="layout layout-record hide">
+        <div class="content-record">
+            <div class="home-device">
+                <div class="swiper-main">
+                    <div class="swiper-container swiper1">
+                        <div class="swiper-wrapper">
+                        </div>
+                    </div>
+                </div>
+                <a class="arrow-left" href="#"></a> 
+                <a class="arrow-right active" href="#"></a>
+                <div class="pagination pagination1">
+                    <div class="recorder-box">
+                        <div class="timer">00:00.00</div>
+                        <a class="recorder">
+                            <i class="icon icon_record"></i>
+                        </a>
+                        <div class="counter"><span>0/0</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="close-page"></a>
+    </div>
+    <!--录音结束的播放、提交弹层-->
+    <div class="layout layout-recordfinsish-box hide">
+        <div class="layout-recordfinsish-tip">
+            <div class="tip-msg">
+                <div class="info">
+                    <a class="play-back"></a>
+                    <div class="redord-info">
+                        <p class="user-tip">音频已录制完成，点击左侧播放按钮试听</p>
+                        <p class="cur-book"></p>
+                        <p class="play-time"></p>
+                    </div>
+                </div>    
+                <div class="upload-btn">
+                    <a class="uploadRecordAudio">提交录音</a>
+                </div>
+            </div>
+            
+            <a class="close close-recordfinsish-tip"></a>
+        </div>
+    </div>
+    <!--我的页面 合并滑动-->
+    <!--个人信息页-->
+    <div class="layout layout-userinfo hide">
+        <div class="content content-myinfo">
+            <a class="goback"></a>
+            <div class="user">
+                <div class="fz_0 textcenter">
+                    <div class="user_img">
+                        <img src="http://datainfo.b0.upaiyun.com/image/user_head.png" class="headimg">
+                        <form id="formUpload">
+                            <input type="hidden" name="policy" value="">
+                            <input type="hidden" name="signature" value="">
+                            <input type="file" name="file">
+                        </form>
+                        <a class="add_img"></a>
+                    </div>
+                </div>
+                <p class="textcenter user_name">0</p>
+            </div>
+            <div class="form-box">
+                <div class="sex-box box">
+                    <span>性别</span>
+                    <div class="boxflex">
+                        <div class="box">
+                            <div class="sex-item">
+                                <input type="radio" class="regular-radio" name="radio-1-set" id="radio-1-1" value="1"><label for="radio-1-1"></label>
+                                <span>男</span>
+                            </div>
+                            <div class="sex-item">
+                                <input type="radio" class="regular-radio" name="radio-1-set" id="radio-1-2" value="2"><label for="radio-1-2"></label>
+                                <span>女</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-control">
+                    <input class="input" name="user_name" type="text" placeholder="请输入姓名"/>
+                </div>
+                <div class="form-control relative">
+                    <select class="input" name="age" type="number" placeholder="请选择年纪">
+                        <option value="">请选择年纪</option>
+                        <option value="1">1岁</option>
+                        <option value="2">2岁</option>
+                        <option value="3">3岁</option>
+                        <option value="4">4岁</option>
+                        <option value="5">5岁</option>
+                        <option value="6">6岁</option>
+                        <option value="7">7岁</option>
+                        <option value="8">8岁</option>
+                        <option value="9">9岁</option>
+                        <option value="10">10岁</option>
+                        <option value="11">11岁</option>
+                        <option value="12">12岁</option>
+                    </select>
+                    <span class="caret"></span>
+                </div>
+                <div class="form-control">
+                    <input class="input" name="school" type="text" placeholder="请输入地址"/>
+                </div>
+                <div class="form-control">
+                    <input class="input" name="phone" type="text" placeholder="请输入联系电话"/>
+                </div>
+                <div class="edit">
+                    <a class="edit-userinfo" type="button">完&nbsp;&nbsp;&nbsp;&nbsp;成</a>
+                </div>
+            </div>
+        </div>
+        <div class="layout layout-crop hide">
+            <div class="imgbox">
+                <img class="cropimage"/>
+            </div>
+            <a class="btn crop"><span>剪切图片</span></a>
+        </div>
+    </div>
+    <!--评分及进度-->
+    <div class="layout layout-progress hide">
+        <div class="content content-myinfo">
+            <a class="goback"></a>
+            <div class="user">
+                <div class="fz_0 textcenter">
+                    <div class="user_img">
+                        <img src="http://datainfo.b0.upaiyun.com/image/user_head.png">
+                    </div>
+                </div>
+                <img class="medal hide" src="http://datainfo.b0.upaiyun.com/image/medal_1.png" />
+                <p class="textcenter user_name"> </p>
+                <p class="read-total">坚持了<span class="days">XXXXXXX</span>天，累计朗读了<span class="minutes">76</span>分钟</p>
+            </div>
+
+            <div class="progress-box">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="processingbar1">
+                            <svg width="140" height="140" viewbox="0 0 140 140">
+                                <circle id="base" cx="70" cy="70" r="60" stroke-width="10" stroke="#D1D3D7" fill="none"></circle>
+                                <circle id="progress" cx="70" cy="70" r="60" stroke-width="10" stroke="#00A5E0" fill="none" transform="matrix(0,-1,1,0,0,140)" stroke-dasharray="0 1069"></circle>
+                            </svg>
+                            <div class="text-info textcenter">
+                                <p class="font-warning num">0</p>
+                                <p>本</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="processingbar2">
+                            <svg width="278" height="278" viewbox="0 0 278 278">
+                                <circle id="base" cx="139" cy="139" r="129" stroke-width="10" stroke="#D1D3D7" fill="none"></circle>
+                                <circle id="progress" cx="139" cy="139" r="129" stroke-width="10" stroke="#00A5E0" fill="none" transform="matrix(0,-1,1,0,0,278)" stroke-dasharray="0 1069"></circle>
+                            </svg>
+                            <div class="text-info textcenter">
+                                <div class="slogn">
+                                    <img src="http://datainfo.b0.upaiyun.com/image/slogn.png" />
+                                </div>
+                                <p class="num font-warning">0分</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="processingbar3">
+                            <svg width="140" height="140" viewbox="0 0 140 140">
+                                <circle id="base" cx="70" cy="70" r="60" stroke-width="10" stroke="#D1D3D7" fill="none"></circle>
+                                <circle id="progress" cx="70" cy="70" r="60" stroke-width="10" stroke="#00A5E0" fill="none" transform="matrix(0,-1,1,0,0,140)" stroke-dasharray="0 1069"></circle>
+                            </svg>
+                            <div class="text-info textcenter">
+                                <p class="font-warning num">0</p>
+                                <p>字</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="progress-list">
+                <p class="start-time">开始时间：XXXXXXXX</p>
+                <div class="list">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--阅读历史-->
+    <div class="layout layout-history hide">
+        <div class="content content-histroyinfo">
+            <a class="goback"></a>
+
+            <div class="histroy-list">
+                <div class="list">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--保证金-->
+    <div class="layout layout-deposit hide">
+        <div class="content content-deposit">
+            <a class="goback"></a>
+            <div class="deposit-list">
+                <div class="list">
+                    <div class="list-item deposit-money">
+                        <div class="box">
+                            <div class="boxflex">
+                                <div class="deposit-icon">
+                                    <img src="http://datainfo.b0.upaiyun.com/image/icon_money_pay.png">
+                                </div>
+                            </div>
+                            <div class="boxflex">
+                                <p class="textright font-warning money">0元</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-dtail">
+                        
+                    </div>
+                </div>
+                <a class="btn loadpage hide">加载更多</a>
+            </div>
+        </div>
+    </div>
+    <!--开启，结束活动状态-->
+    <div class="layout layout-setlevelstatus-box hide">
+        <div class="layout-setlevelstatus-tip">
+            <div class="tip-msg">
+                <div class="info">
+                    <p>已经提交后台处理</p>
+                </div>    
+                <div class="upload-btn">
+                    <a class="cancel">取消</a>
+                    <a class="ok">确定</a>
+                </div>
+            </div>
+            <a class="close close-setlevelstatus-tip">×</a>
+        </div>
+    </div>
+    <!--100本任务完成退款-->
+    <div class="layout layout-refundment-box hide">
+        <div class="layout-setlevelstatus-tip">
+            <div class="tip-msg">
+                <div class="info">
+                    <p>全部学习完成,是否申请退保证金?</p>
+                </div>    
+                <div class="upload-btn">
+                    <a class="cancel">取消</a>
+                    <a class="ok">确定</a>
+                </div>
+            </div>
+            <a class="close close-setlevelstatus-tip">×</a>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/1.9.1/jquery.js"></script>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="http://datainfo.b0.upaiyun.com/js/createjs.min.js"></script>
+<!--wxconfig-->
+<script src="/jsconfig" type="text/javascript"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/Swiper/3.4.2/js/swiper.min.js"></script>
+<script type="text/javascript" src="http://datainfo.b0.upaiyun.com/js/uiDialog.js"></script>
+<script type="text/javascript" src="//cdn.bootcss.com/jquery-jcrop/0.9.12/js/jquery.Jcrop.min.js"></script>
+<script type="text/javascript" src="http://datainfo.b0.upaiyun.com/js/app.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<!--<script type="text/javascript">-->
+    <!--/**首页授权**/-->
+    <!--if( !app.cookie.get("islogin")){-->
+        <!--window.top.location.replace("/login?url=home.html");-->
+    <!--}-->
+
+<!--</script>-->

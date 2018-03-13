@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    
+    <meta content="我的保证金" name="description" />
+    <meta content="" name="author" />
+    <title>我的保证金</title>
+    <script type="text/javascript" src="js/flexible_css.js"></script>
+    <script type="text/javascript" src="js/flexible.js"></script>
+
+    <link href="css/reset.css" rel="stylesheet" type="text/css"/>
+    <link href="css/main.css" rel="stylesheet" type="text/css"/>
+    <link href="css/uiDialog.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+    <div class="content content-deposit hide">
+        <a class="goback"></a>
+
+        <div class="deposit-list">
+            <div class="list">
+                <div class="list-item deposit-money">
+                    <div class="box">
+                        <div class="boxflex">
+                        	<div class="deposit-icon">
+                        		<img src="image/icon_money_pay.png">
+                        	</div>
+                        </div>
+                        <div class="boxflex">
+                        	<p class="textright font-warning money">93元</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-dtail">
+                    <div class="list-item">
+                    	<p class="act-time">2017/05/07  12:33</p>
+                    	<div class="box">
+                    		<div class="boxflex">
+                    			<p>未完成第一周任务</p>
+                    		</div>
+                    		<div class="boxflex">
+                    			<p class="textright">扣除保证金：2元</p>
+                    		</div>
+                    	</div>
+                    </div>
+                    <div class="list-item">
+                    	<p class="act-time">2017/05/07  12:33</p>
+                    	<div class="box">
+                    		<div class="boxflex">
+                    			<p>未完成第一周任务</p>
+                    		</div>
+                    		<div class="boxflex">
+                    			<p class="textright">扣除保证金：2元</p>
+                    		</div>
+                    	</div>
+                    </div>
+                    <div class="list-item">
+                    	<p class="act-time">2017/05/07  12:33</p>
+                    	<div class="box">
+                    		<div class="boxflex">
+                    			<p>未完成第一周任务</p>
+                    		</div>
+                    		<div class="boxflex">
+                    			<p class="textright">扣除保证金：2元</p>
+                    		</div>
+                    	</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="row">
+            <div class="col-6 tab tab-home">
+                <a class="btn" href="home.html" target="_self">
+                    <div class="box">
+                        <span class="icon icon-yd "></span>
+                        <p class="boxflex">朗读者计划</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-6 tab tab-my active">
+                <a class="btn" href="my.html" target="_self">
+                    <div class="box">
+                        <span class="icon icon-my"></span>
+                        <p class="boxflex">我的</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="js/uiDialog.js"></script>
+<script type="text/javascript">
+$(function(){
+    var dialog = new Dialog();
+    var dom = $(".content-deposit");
+    $(".goback").on("click" ,function(){
+        history.go(-1);
+    });
+    dialog.tip("正在获取数据");
+        $.ajax({
+            url: 'http://marky.ngrok.cc/deposit/my',
+            type: 'GET',
+            dataType: 'jsonp',
+            data:{},
+        })
+        .done(function(res) {
+            if(res.code=="0"){
+                var data = res.data;
+                if(!$.isEmptyObject(data)){
+                    dom.find(".money").html(data.user_money);
+                    var tmp="";
+                    for(var i=0,len=data.money_list.items.length;i<len;i++){
+                        var item = data.money_list.items[i]
+                        tmp+='<div class="list-item"><p class="act-time">'+item.updated_at+'</p><div class="box">'
+                        tmp+='<div class="boxflex"><p>'+item.remarks+'</p>'
+                        tmp+='</div><div class="boxflex"><p class="textright">扣除保证金：'+item.money+'元</p></div></div></div>'
+                    }
+                    dom.find(".list-dtail").html("").append(tmp);
+                    dialog.destroy();
+                    dom.fadeIn(600);
+                }else{
+                    dialog.tip({'msg':"保证金数据获取失败","time":1600});
+                }
+            }else{
+                dialog.tip({'msg':"保证金数据获取失败","time":1600});
+            }
+        })
+        .fail(function() {
+            dialog.tip({'msg':"保证金数据获取失败","time":1600});
+        })
+})
+</script>

@@ -1,0 +1,1884 @@
+html,body{width: 100%;height: 100%;overflow: hidden;background-color: #f3eddd;} 
+.hide{display: none;}
+.show{display: block;}
+.hidden{opacity: 0;}
+.block{display: block;}
+.clear{clear: both;overflow: hidden;zoom:1;}
+.left{float: left;}
+.right{float: right;}
+.col50{width: 50%;}
+.col33{width: 33.33%}
+.col25{width: 25%;}
+.col20{width: 20%;}
+.block{display: block; width: 100%;}
+.inlineblock{display: inline-block;}
+.inline{display: inline;}
+.textcenter{text-align: center;}
+.textright{text-align: right;}
+.fz_0{font-size: 0;}
+.blod{font-weight: 600; padding: 0 2px;}
+.relative{position: relative;}
+.blod{font-weight: 600 !important;}
+.font-warning{
+    color: #f58d49 !important;
+}
+.box {
+    display:-moz-box;
+    display:-webkit-box;
+    display:box;
+    width: 100%;
+}
+.boxflex {
+    -moz-box-flex:1;
+    -webkit-box-flex:1;
+    box-flex:1;
+    height: inherit;
+    width: 100%;
+}
+.row{
+    overflow: hidden;
+    clear: both;
+    display: inline-block;
+    width: 100%;
+}
+.row [class^="col-"]{
+    float: left;
+}
+.col-12{
+    width: 100%;
+}
+.col-6{
+    width: 50%;
+}
+.col-4{
+    width: 33.333%;
+}
+.col-3{
+    width: 25%;
+}
+
+.margin-10{margin: 10px;}
+.padding-10{padding:10px;}
+
+.icon{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+}
+.icon_record{
+    background-image: url(http://datainfo.b0.upaiyun.com/image/icon_micphone.png);
+    background-size: 100%;
+}
+.icon_isdone{
+    background-image: url(http://datainfo.b0.upaiyun.com/image/icon_isdone.png);
+    background-size: 100%;
+}
+
+.content{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    margin-top: 0.6rem;
+    display:inline-block;
+    padding: 0 0.4rem;
+}
+.content.hide,.footer.hide{
+    display: none;
+}
+.content-home.hide{
+    display: block;
+    opacity: 0;
+}
+
+.banner{
+    position: relative;
+}
+.btn{
+    display: inline-block;
+    width: 100%;
+    border:none;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    cursor: pointer;
+}
+.loadpage.btn.hide{
+    display: none;
+}
+.btn:hover,.btn:active{
+    opacity: .8;
+}
+.footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: inline-block;
+    width: 100%;
+    font-size: 0;
+    height: 1.6rem;
+    line-height: 1.6rem;
+    text-align: center;
+    z-index: 1000;
+}
+.footer-margin{
+    margin-bottom: 2.6rem;
+}
+.btn_sign{
+    color: #fff;
+    background-color: #ca2218;
+    font-size: 0.64rem;
+    height: 1.6rem;
+    line-height: 1.6rem;
+}
+.footer .tab{
+    font-size: 0.48rem;
+    background-color: #646d8c;
+    color: #fff;
+}
+.footer .tab.active{
+    background-color: #525c7f;
+    color: #37d900;
+}
+.footer .tab .btn {
+    background-repeat: no-repeat;
+    display: block;
+    height: 1.6rem;
+    line-height: 1.6rem;
+}
+.footer .tab .btn p{
+    height: 1.6rem;
+    line-height: 1.6rem;
+    text-align: left;
+    padding-left: 20px;
+    color: #fff;
+}
+.footer .tab.active .btn p{
+    color: #33cc00;
+}
+.footer .tab .btn .icon {
+    background-position: left center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 0.64rem;
+    height: 1.6rem;
+}
+
+.tab-home .icon-yd {
+    background-image: url("http://datainfo.b0.upaiyun.com/image/icon_book_gray.png");
+    background-size: 100% auto;
+    height: 1.6rem;
+    margin-left: 30px;
+    width: 0.64rem;
+}
+.tab-home.active .icon-yd{
+    background-image: url(http://datainfo.b0.upaiyun.com/image/icon_book_green.png);
+}
+.tab-my .icon-my{
+    background-image: url(http://datainfo.b0.upaiyun.com/image/icon_mine_gray.png);
+    background-size: 100% auto;
+    height: 1.6rem;
+    margin-left: 30px;
+    width: 0.64rem;
+}
+.tab-my.active .icon-my{
+    background-image: url(http://datainfo.b0.upaiyun.com/image/icon_mine_green.png);
+}
+/*欢迎页*/
+.content-welcome{
+    margin:0;
+    padding:0;
+}
+.content.content-welcome > div:last-child{
+    margin:0;
+}
+.content-welcome .home-device,.content-welcome .home-device .swiper-main,
+.content-welcome .home-device .swiper-slide>img{
+    width:100%;
+    height: 100%; 
+}
+.content-welcome .pagination.pagination-box{
+    position: fixed;
+    left: 50%;
+    bottom: 4%;
+    z-index: 2;
+    margin-left: -0.72rem;
+}
+
+.content-welcome .pagination.pagination-box .pagination-welcome .swiper-pagination-bullet {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #f36b0b;
+    border-radius: 100%;
+    display: inline-block;
+    height: 0.266667rem;
+    margin-left: 0.133333rem;
+    margin-right: 0.133333rem;
+    opacity: 1;
+    width: 0.266667rem;
+}
+.content-welcome .pagination.pagination-box .pagination-welcome .swiper-pagination-bullet.swiper-pagination-bullet-active {
+    background-color: #f36b0b;
+}
+.content-welcome .entry-guide{
+    position: absolute;
+    bottom: 8%;
+    left: 50%;
+    margin-left: -1.722rem;
+    height: 0.853333333rem;
+    width: 3.444rem;
+    font-size: 0.533333rem;
+    line-height: 0.8rem;
+    border-radius: 0.4rem;
+    border:1px solid #ccc;
+    background-color: #fff;
+    color: #3c496d;
+}
+/*slider*/
+.slider{
+    padding-top: 0.533333rem;
+}
+.slider .hiSlider-item{
+    text-align: center;
+}
+.slider .hiSlider-item .cover{
+    position: relative;
+    padding-bottom: 0.48rem;
+}
+.slider .hiSlider-item .cover>img{
+    width: 50%;
+    height: 6.08rem;
+}
+.slider .hiSlider-item .cover .listen{
+    position: absolute;
+    bottom:0;
+    left: 50%;
+    display: inline-block;
+    width: 1.86666666rem;
+    height: 1.86666666rem;
+    margin-left: -0.93333333rem;
+    border:0.13333333rem solid #f39a51;
+    border-radius: 50%;
+    background: url(http://datainfo.b0.upaiyun.com/image/default_head.png) no-repeat center/100%;
+}
+.slider .hiSlider-item .cover .listen.my{
+    border-color: #80d958;
+}
+.slider .hiSlider-item .cover .listen.active{
+    opacity: 0.7;
+}
+.slider .hiSlider-item .cover .listen.active .status{
+    display: inline-block;
+    width: 0.8rem;
+    height: 0.8rem;
+    background: url(http://datainfo.b0.upaiyun.com/image/st_pause.png) no-repeat center/100%;
+    border-radius: 50%;
+    margin-top: 0.35rem;
+}
+.task-tips{
+    position: absolute;
+    top: 5.2rem;
+    right: 0.32rem;
+    display: inline-block;
+    width: 0.5333333rem;
+    height: 0.58666666rem;
+    background: url(http://datainfo.b0.upaiyun.com/image/icon_download.png) no-repeat center/100%;
+    z-index: 990;
+}
+.slider .reader{
+    font-size: 0.32rem;
+    padding: 0.24rem 0 0.32rem;
+    line-height: 1;
+    vertical-align: baseline;   
+}
+
+.slider .read_time {
+    font-size: 0.32rem;
+    line-height: 1;
+    vertical-align: baseline;
+    padding-bottom: 0.48rem;
+}
+
+.slider .title{
+    font-size: 0.64rem;
+    line-height: 1;
+    vertical-align: baseline;
+    padding-bottom: 0.2666666rem; 
+}
+
+.content-home .home-device {
+    box-shadow: none;
+    height: 9.6666666rem;
+    margin: 0 auto;
+    position: relative;
+    width: auto;
+    text-align: center;
+}
+.content-home .swiper-main {
+    height: 9.4666666rem;
+    position: relative;
+    width: 100%;
+    padding-top: 0.6rem;
+}
+
+.home-device .swiper-slide{
+    text-align: center;
+}
+.home-device .swiper-slide .cover{
+    position: relative;
+    padding-bottom: 0.48rem;
+}
+.home-device .swiper-slide .cover>img{
+    width: auto;
+    height: 6.08rem;
+}
+.home-device .swiper-slide .cover .listen{
+    position: absolute;
+    bottom:0;
+    left: 50%;
+    display: inline-block;
+    width: 1.86666666rem;
+    height: 1.86666666rem;
+    margin-left: -0.93333333rem;
+    border-radius: 50%;
+}
+.home-device .swiper-slide .cover .listen.default>img{
+    border: 0.133333rem solid #f39a51;
+    border-radius: 50%;
+    width: 1.86666666rem;
+    height: 1.86666666rem;
+}
+.home-device .swiper-slide .cover .listen.my>img{
+    border: 0.133333rem solid #80d958;
+    border-radius: 50%;
+    width: 1.86666666rem;
+    height: 1.86666666rem;
+}
+.home-device .swiper-slide .cover .listen.active{
+    opacity: 0.7;
+}
+.home-device .swiper-slide .cover .listen.active .status{
+    display: inline-block;
+    width: 0.8rem;
+    height: 0.8rem;
+    background: url(http://datainfo.b0.upaiyun.com/image/st_pause.png) no-repeat center/100%;
+    border-radius: 50%;
+    margin-top: -0.4rem;
+    margin-left: -0.4rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+.home-device .reader{
+    font-size: 0.32rem;
+    padding: 0.24rem 0 0.32rem;
+    line-height: 1;
+    vertical-align: baseline;   
+}
+.home-device .read_time {
+    font-size: 0.32rem;
+    line-height: 1;
+    vertical-align: baseline;
+    padding-bottom: 0.48rem;
+    color: #5a6387;
+}
+.home-device .title{
+    font-size: 0.64rem;
+    line-height: 1;
+    vertical-align: baseline;
+    padding-bottom: 0.2666666rem;
+    color: #485879;
+    font-weight: 600;
+}
+.content-home .pagination.pagination-box{
+    height: 0.48rem;
+    line-height: 0.48rem;
+    background: url(http://datainfo.b0.upaiyun.com/image/bg-line.png) repeat-x center/100% 1px;
+    background-color: transparent;
+}
+.content-home .pagination.pagination-box .pagination-home{
+    display: inline-block;
+    padding:0 0.08rem;
+    background-color: #f3eddd;
+}
+.content-home .pagination.pagination-box .pagination-home .swiper-pagination-bullet {
+    background: #fff none repeat scroll 0 0;
+    border-radius: 100%;
+    display: inline-block;
+    height: 0.26666666rem;
+    opacity: 1;
+    width: 0.26666666rem;
+    border: 1px solid #f36b0b;
+    margin-left: 0.13333333rem;
+    margin-right: 0.133333333rem;
+}
+.content-home .pagination.pagination-box .pagination-home .swiper-pagination-bullet.swiper-pagination-bullet-active{
+    background-color: #f36b0b;
+}
+/**********************/
+
+.task_info{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1.2rem;
+    height: 1.3rem;
+    background:url(http://datainfo.b0.upaiyun.com/image/bg_weekinfo.png) no-repeat center;
+    background-size: 100% auto;
+    z-index: 10;
+}
+.task_info > p {
+    font-size: 0.24rem;
+    line-height: 0.5rem;
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 0.1rem;
+}
+.task_info > p>span{
+    font-size: 0.32rem;
+    color: #f45f00;
+    font-weight: 600;
+}
+
+.action{
+    margin-top: 0.64rem;
+    text-align: center;
+    position: relative;
+}
+.action .recorder{
+    width: 2.4rem;
+    height: 2.4rem;
+    background-color: #33cc00;
+    border-radius: 50%;
+    display: inline-block;
+}
+.action .switch-box{
+    position: absolute;
+    top: 0.906666666rem;
+    right: 0.26666666rem;
+}
+.action .switch-box .switchery{
+    height: 0.4rem;
+    width: 0.74666666rem;
+}
+.action .switch-box .switchery > small{
+    width: 0.2226666rem;
+    height: 0.226666rem;
+    top: 0.08rem;
+}
+/*关闭状态*/
+.action .switch-box .switchery.off{
+    background-color: #f69b58;
+    border-color: #f69b58;
+    box-shadow: 0 0 0 0 #f69b58 inset;
+    -webkit-transition: border 0.5s ease 0s, box-shadow 0.5s ease 0s;
+    -moz-transition: border 0.5s ease 0s, box-shadow 0.5s ease 0s;
+    transition: border 0.5s ease 0s, box-shadow 0.5s ease 0s;
+}
+.action .switch-box .switchery.off>small{
+    left: 0.08rem;
+    -webkit-transition: background-color 0.5s ease 0s, left 0.25s ease 0s;
+    -moztransition: background-color 0.5s ease 0s, left 0.25s ease 0s;
+    transition: background-color 0.5s ease 0s, left 0.25s ease 0s;
+}
+/*打开状态*/
+.action .switch-box .switchery.on{
+    background-color: #33cc00;
+    border-color: #33cc00;
+    box-shadow: 0 0 0 7.5px #33cc00 inset;
+    -webkit-transition: border 0.5s ease 0s, box-shadow 0.5s ease 0s, background-color 1.5s ease 0s;
+    -moz-transition: border 0.5s ease 0s, box-shadow 0.5s ease 0s, background-color 1.5s ease 0s;
+    transition: border 0.5s ease 0s, box-shadow 0.5s ease 0s, background-color 1.5s ease 0s;
+}
+.action .switch-box .switchery.on>small{
+    background-color: #fff;
+    left: 0.46rem;
+    -webkit-transition: background-color 0.5s ease 0s, left 0.25s ease 0s;
+    -moz-transition: background-color 0.5s ease 0s, left 0.25s ease 0s;
+    transition: background-color 0.5s ease 0s, left 0.25s ease 0s;
+}
+/*头像翻转*/
+.in {
+    animation-duration: 350ms;
+    animation-timing-function: ease-out;
+}
+.out {
+    animation-duration: 225ms;
+    animation-timing-function: ease-in;
+}
+.flip {
+    backface-visibility: hidden;
+    transform: translateX(0px);
+}
+.flip.in {
+    animation-duration: 225ms;
+    animation-name: flipintoright;
+}
+.flip.out {
+    animation-duration: 175ms;
+    animation-name: flipouttoleft;
+    transform: rotateY(-90deg) scale(0.9);
+}
+.layout.layout-record{
+    background-color: #f2f2f2;
+    z-index: 1001;
+}
+/*我的*/
+.content-my{
+    margin-top:1.466666rem;
+}
+.user_img{
+    width: 1.86666rem;
+    height: 1.86666rem;
+    border:0.13333rem solid #f39c57;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+}
+.user_img>img{
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+}
+.user_name{
+    font-size: 0.32rem;
+    margin-top:0.13333rem;
+    line-height: 1;
+    color: #191919;
+}
+.list .list-item{
+    border-bottom: 1px solid #d3d3d3;
+    padding-top:0.72rem;
+    padding-bottom: 0.4rem;
+    cursor: pointer;
+}
+.list .list-item:last-child{
+    border-bottom: none;
+}
+.list .list-item .icon{
+    width: 0.48rem;
+    height: 0.48rem;
+    background-position: center top;
+    background-size: 100%;
+    margin-left: 0.266666667rem;
+}
+.list .list-item .small{
+    font-size: 0.32rem;
+}
+.list .list-item .title{
+    font-size: 0.48rem;
+    color: #525c7e;
+    padding-left: 0.9333333rem;
+    line-height: 1;
+}
+.list .list-item .icon_user{
+    background-image: url(http://datainfo.b0.upaiyun.com/image/icon_my.png);
+}
+.list .list-item  .icon_progress{
+    background-image: url(http://datainfo.b0.upaiyun.com/image/icon_progress.png);
+}
+.list .list-item .icon_history{
+    background-image: url(http://datainfo.b0.upaiyun.com/image/icon_history.png);
+}
+.list .list-item .icon_promiss{
+    background-image: url(http://datainfo.b0.upaiyun.com/image/icon_promiss.png);
+}
+.list .list-item .icon_help{
+    background-image: url(http://datainfo.b0.upaiyun.com/image/icon_help.png);
+}
+.content-my .pause-read,.content-my .start-read{
+    font-size: 0.48rem;
+    line-height: 1;
+    text-decoration: underline;
+    padding:0.4rem 0;
+    color: #323f6c;
+}
+
+/*我的个人信息*/
+.content-myinfo{
+    margin-top: 0.8533333rem;
+    overflow-y: scroll;
+    padding-bottom: 2.6rem;
+}
+.goback{
+    margin-left: 0.3466666rem;
+    display: inline-block;
+    width: 0.56rem;
+    height: 0.48rem;
+    background-image: url(http://datainfo.b0.upaiyun.com/image/return.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: left center;
+    margin-bottom: 0.13333333rem;
+}
+.content-myinfo .user_img{
+    position: relative;
+}
+.content-myinfo .user_img .add_img{
+    position: absolute;
+    width: 0.7466666rem;
+    height: 0.7466666rem;
+    bottom: -0.133333rem;
+    right: -0.2733333rem;
+    display: inline-block;
+    background:url(http://datainfo.b0.upaiyun.com/image/add_user_img.png) no-repeat center;
+    background-size: 100%;
+    cursor: pointer;
+}
+
+.content-myinfo .user_img input {
+    cursor: pointer;
+    display: block;
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+}
+.form-box{
+    margin-top: 1.3333333rem;
+    padding: 0.4rem 1.06666667rem;
+}
+.form-control,.sex-box{
+    margin-bottom: 0.26666666rem;
+}
+.sex-box {
+    padding: 0.4rem 0.48rem;
+    font-size: 0.32rem;
+}
+.sex-box span{
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 0.08rem;
+}
+.sex-box .sex-item{
+    padding-left: 0.64rem;
+}
+.sex-item .regular-radio {
+    display: none;
+}
+.sex-item label {
+    display: inline;
+}
+.regular-radio + label {
+    background-color: #fff;
+    border: 1px solid #505a7e;
+    border-radius: 50px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 -15px 10px -12px rgba(0, 0, 0, 0.05) inset;
+    display: inline-block;
+    padding: 0.2rem;
+    position: relative;
+}
+.regular-radio:checked + label::after {
+    background: #99a1a7 none repeat scroll 0 0;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3) inset;
+    content: " ";
+    font-size: 0.24rem;
+    height: 0.16rem;
+    left: 0.12rem;
+    position: absolute;
+    top: 0.12rem;
+    width: 0.16rem;
+}
+.regular-radio:checked + label {
+    background-color: #fff;
+    border: 1px solid #505a7e;
+    color: #505a7e;
+}
+.regular-radio + label:active, .regular-radio:checked + label:active {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1) inset;
+}
+.form-control{
+    display: block;
+}
+.form-control >input,.form-control >select{
+    width: 100%;
+    height: 0.96rem;
+    border:1px solid #c7c8c6;
+    border-radius: 0.5rem;
+    padding: 0 0.48rem;
+    font-size: 0.32rem;
+    color: #4c5976;
+    background-color: #fff;
+}
+.edit>.edit-userinfo{
+    display: inline-block;
+    width: 100%;
+    height: 0.96rem;
+    border-radius: 0.5rem;
+    padding: 0 0.48rem;
+    font-size: 0.48rem;
+    color: #fff;
+    background-color: #33cc00;
+    text-align: center;
+    line-height: 0.96rem;
+    border: none;
+}
+/*我的进度及评分*/
+.content-myinfo .user{
+    position: relative;
+}
+.content-myinfo .user .medal{
+    position: absolute;
+    top: 0.1333333rem;
+    right: 1.2rem;
+    width: 0.9066666rem;
+}
+.progress-box{
+    margin: 1rem 0;
+}
+.progress-box>.row>div{
+    border-right: 1px solid #cbccc6;
+}
+.progress-box>.row>div:last-child{
+    border-right: none;
+}
+.progress-box .text-info{
+    color: #535879;
+}
+.progress-box .text-info .title{
+    font-size: 0.42666666rem;
+    vertical-align: bottom;
+}
+.progress-box .text-info .title .num{
+    font-size: 0.6rem;
+    vertical-align: bottom;
+}
+.progress-box .text-info .tips{
+    font-size: 0.2933333rem;
+    line-height: 1;
+    margin-top:0.13333333rem;
+    margin-bottom: 0.2133333rem;
+    vertical-align: bottom;
+}
+.progress-list >p.title{
+    color: #535879;
+    font-size: 0.3333333rem;
+    line-height: 120%;
+}
+.progress-list .task{
+    font-size: 0.48rem;
+    line-height: 1;
+    margin: 0.133333rem 0;
+}
+.progress-list .start-time{
+    font-size: 0.333333rem;
+    color: #535879;
+    line-height: 1;
+    margin-top: 0.2833333rem;
+}
+.progress-list .list{
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 0.466666rem;
+}
+.progress-list .list .list-item{
+    padding: 0 0.26666rem 0 0.533333rem;
+    font-size: 0.32rem;
+    height: 1.2rem;
+    line-height: 1.2rem;
+}
+.progress-list .list .list-item .week-name{
+    color: #404040;
+}
+
+/*我的阅读历史*/
+.histroy-list .list-item{
+    padding: 0;
+    border:none;
+    border-top: 1px solid #d3d3d3;
+}
+.histroy-list .list-item .book-cover{
+    text-align: left;
+    margin-top: 0.34rem;
+    position: relative;
+    width: 1.2rem;
+    margin-left: 0.4rem;
+}
+.histroy-list .list-item .book-cover>img{
+    width: 1.12rem;
+    min-height: 1.266666rem;
+    overflow: hidden;
+    vertical-align: middle;
+}
+.histroy-list .list-item .read-status{
+    text-align: right;
+    height: 3.6rem;
+    line-height: 3.6rem;
+}
+.histroy-list .list-item .read-status>img{
+    width:2.4rem;
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+.content-histroyinfo{
+    margin-top: 0.853333rem;
+    overflow-y: scroll;
+    padding: 0 0.8rem 2.6rem;
+}
+.histroy-list .stage{
+    background: url(http://datainfo.b0.upaiyun.com/image/bg-line.png) repeat-x center/auto 1px;
+    text-align: center;
+    cursor: pointer;
+}
+.histroy-list .stage>span{
+    display: inline-block;
+    padding: 0 0.32rem;
+    font-size: 0.3733333rem;
+    color: #545573;
+    background-color:#f3eddd;
+    padding-right: 0.64rem;
+}
+.histroy-list .stage.slideup>span{
+    background:#f3eddd url(../image/icon_arrow_down.png) no-repeat 96% center/auto 0.12rem;
+    padding-right: 0.64rem;
+}
+.histroy-list .stage.slideup+div{
+    display: none;
+}
+.stage.slideup ~ .stage {
+    padding: 0.32rem 0;
+}
+.histroy-list .list .list-item{
+    border-top-style: dashed;
+}
+.histroy-list .list .list-item:first-child{
+    border:none;
+}
+.histroy-list .list .list-item + .list-item{
+    border-top: 1px dashed #d3d3d3;
+    padding: 0;
+}
+.histroy-list .list .stage + .list-item {
+    border: none;
+}
+
+.histroy-list .list-item .invite-friend{
+    text-align: center;
+    color: #999;
+    font-size: 12px;
+    color: green;
+}
+.histroy-list .list-item .box{
+    margin: 0.26666rem 0;
+}
+.histroy-list .list-item .invite-friend{
+    margin-top: 0.2rem;
+    color: #3ecc15;
+    font-size: 0.2933333rem;
+}
+.histroy-list .list-item .invite-friend~.box{
+    margin-top: 0.08rem;
+}
+.histroy-list .list-item .book-name{
+    font-size: 0.373333rem;
+    color: #2b2f4a;
+    margin-top: 0.52rem;
+    text-align: left;
+    margin-bottom: 0.12rem;
+    padding-left: 0.4rem;
+}
+.histroy-list .list-item .read-time{
+    line-height: 150%;
+    text-align: left;
+    font-size: 0.32rem;
+    color: #323f6c;
+    margin-top: 0.6625rem;
+}
+.histroy-list .list-item .invite-read{
+    height: 0.7466666rem;
+    border-radius: 0.37333rem;
+    margin-top: 0.54rem;
+    padding: 0.2rem 0.4rem;
+    background-color: #f27920;
+    font-size: 0.32rem;
+    line-height: 0.346666rem;
+    color: #fff;
+    display: inline-block;
+}
+.histroy-list .list-item .video-time{
+    font-size: 0.3733333rem;
+    color: #323f6c;
+    line-height: 150%;
+    text-align: left;
+    padding-left: 0.4rem;
+}
+.histroy-list .list-item .play{
+    height: 0.9rem;
+    width: 0.9rem;
+    position: absolute;
+    bottom: -0.1333rem;
+    right: -0.2rem;
+    background: url(http://datainfo.b0.upaiyun.com/image/st_play.png) no-repeat center/100%;
+}
+.histroy-list .list-item .play.playing{
+    background-image: url(http://datainfo.b0.upaiyun.com/image/st_pause.png);
+}
+.histroy-list .list-item .wx_share{
+    display: block;
+    margin-top: 0.62rem;
+    text-align: right;
+    width: 0.6rem;
+}
+.histroy-list .list-item .wx_share>img{
+    width: 0.15rem;
+    vertical-align: middle;
+}
+.histroy-list .list-item.unfinish .book-cover,
+.histroy-list .list-item.unfinish .book-name,
+.histroy-list .list-item.unfinish .video-time{
+    opacity: 0.67;
+}
+.histroy-list .list-item.unfinish .nofinish_tag{
+    display: block;
+    position:absolute;
+    top: 50%;
+    right: 0;
+    font-size: 0.32rem;
+}
+/**我的保证金**/
+.content-deposit{
+    padding-bottom: 2.6rem;
+    overflow-y:scroll; 
+}
+.content-deposit .deposit-list{
+    margin-left: 0.533333rem;
+    margin-right: 0.24rem;
+    margin-top: 1rem;
+}
+.deposit-list .list .list-item{
+    padding: 0.32rem 0.48rem 0.32rem 0.08rem;
+    height: 1.46666666rem;
+}
+.content-deposit .deposit-icon>img{
+    height: 1.57333333rem;
+    vertical-align: bottom;
+    margin-top: 0.2rem;
+}
+.deposit-list .list .list-item.deposit-money{
+    padding: 0;
+    height: 2rem;
+}
+.deposit-list .list .list-item .money{
+    font-size: 0.58666666rem;
+    vertical-align: bottom;
+    line-height: 1;
+    margin-top: 1rem;
+    color: #f58d49;
+}
+.deposit-list .list .list-item .btn-withdraw,.deposit-list .list .list-item .btn-withdrawmodify{
+    margin-top: 1.05333rem;
+    font-size: 0.533333rem;
+    vertical-align: bottom;
+    line-height: 1;
+    display: inline-block;
+    color: #51567e;
+}
+.deposit-list .list .list-item .withdraw{
+    display: inline-block;
+    float: right;
+    text-align: center;
+    width: 2.3rem;
+}
+.deposit-list .list .list-item .wait-day{
+    margin-top: 0.84rem;
+    font-size: 0.24rem;
+    vertical-align: bottom;
+    line-height: 1;
+    display: inline-block;
+    color: #51567e;
+}
+.deposit-list .list .list-item .wait-withdraw{
+    font-size: 0.5066666rem;
+    vertical-align: bottom;
+    line-height: 120%;
+    display: inline-block;
+    color: #bfbfc1;
+}
+.deposit-list .list .list-item p{
+    font-size: 0.32rem;
+    color: #525c7e;
+    line-height: 1;
+    vertical-align: bottom;
+}
+.deposit-list .list .list-item .act-time{
+    font-size: 0.24rem;
+    line-height: 1;
+    vertical-align: bottom;
+    color: #41456a;
+    margin-bottom: 0.2rem;
+}
+.deposit-list .list .list-item .getmoney{
+    color: #53d22b;
+}
+
+/*个人信息注册*/
+.content-register{
+    margin-top: 1.6rem;
+    overflow-y: scroll;
+    padding-bottom: 2.6rem;
+}
+.content-register .reg_tip{
+    margin-left: 0.6rem;
+    margin-bottom: 0.7rem;
+}
+.content-register .reg_tip>p{
+    font-size: 0.48rem;
+    line-height: 150%;
+    font-weight: 100;
+    color: #474f79;
+}
+.content-register .img_box{
+    position: relative;
+}
+.content-register .img_box .img_tip{
+    position: absolute;
+    left:4.13333333rem;
+    top: 0.8rem;
+}
+.content-register .img_box .img_tip>p{
+    font-size: 0.24rem;
+    line-height: 150%;
+}
+.content-register .user_img{
+    position: relative;
+    left:1.2rem;
+}
+
+.content-register .user_img .add_img{
+    position: absolute;
+    width: 0.7466666rem;
+    height: 0.7466666rem;
+    bottom: -0.133333rem;
+    right: -0.2733333rem;
+    display: inline-block;
+    background:url(http://datainfo.b0.upaiyun.com/image/add_user_img.png) no-repeat center;
+    background-size: 100%;
+    cursor: pointer;
+}
+.content-register  .form-box{
+    margin-top: 0.32rem;
+}
+.content-register .user_img input{
+    display: block;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left:0;
+    z-index: 10;
+}
+.footer .btn-register{
+    height: 1.6rem;
+    line-height: 1.6rem;
+    font-size: 0.64rem;
+    letter-spacing: 0.48rem;
+    color: #fff;
+    background-color: #33cc00;
+    text-indent: 0.48rem;
+}
+/*书录音*/
+  
+.home-device {
+    /*box-shadow: 0 0 5px #000;*/
+    height: 12rem;
+    margin: 0 auto;
+    position: relative;
+    width: 10rem;
+    text-align: center;
+}
+.swiper-main {
+    height: 12rem;
+    position: relative;
+    width: 10rem;
+}
+.swiper1, .swiper1 .swiper-slide ,.swiper1, .swiper1 .swiper-slide>img{
+    height: 12rem;
+    width:  10rem;
+    overflow: hidden;
+}
+.home-device .arrow-left {
+    background: rgba(0, 0, 0, 0) url("http://datainfo.b0.upaiyun.com/image/prev_gray.png") no-repeat  left top/100%;
+    height: 1.28rem;
+    width: 1.28rem;
+    z-index: 100;
+    display: inline-block;
+    margin-top: 0.1rem;
+    margin-right: 0.72rem;
+    margin-bottom:0.36rem;
+}
+.home-device .arrow-left.active{
+    background-image: url("http://datainfo.b0.upaiyun.com/image/prev_active.png");
+}
+.home-device .arrow-right {
+    background: rgba(0, 0, 0, 0) url("http://datainfo.b0.upaiyun.com/image/next_gray.png") no-repeat left bottom/100%;
+    height: 1.28rem;
+    width: 1.28rem;
+    z-index: 100;
+    display: inline-block;
+    margin-top:0; 
+    margin-bottom:0.36rem;
+}
+/*320*480下高度不够*/
+@media screen and (max-width:321px){
+    [data-dpr="1"] .home-device .arrow-left,.home-device .arrow-right {
+        margin-top: 0.4rem;
+        margin-bottom:0.2rem; 
+    }
+}
+.home-device .arrow-right.active{
+    background-image: url("http://datainfo.b0.upaiyun.com/image/next_active.png");
+}
+.pagination1 {
+    text-align: center;
+}
+.pagination1 .swiper-pagination-switch {
+    background: #999 none repeat scroll 0 0;
+    border-radius: 10px;
+    box-shadow: 0 1px 2px #555 inset;
+    cursor: pointer;
+    display: inline-block;
+    height: 10px;
+    margin: 0 3px;
+    width: 10px;
+}
+.pagination1 .swiper-active-switch {
+    background: #fff none repeat scroll 0 0;
+}
+.close-page{
+    width: 1.12rem;
+    height: 1.12rem;
+    position: absolute;
+    display: inline-block;
+    top: 0.7333333rem;
+    right: 0.6533333rem;
+    z-index: 999;
+    background: url(http://datainfo.b0.upaiyun.com/image/layer_close.png) no-repeat center/100%;
+}
+.pagination1{
+    background: url(http://datainfo.b0.upaiyun.com/image/bg-line.png) repeat-x center/100% 1px;
+    background-color: transparent;
+    margin:0 0.4rem;
+    position: relative;
+}
+.pagination1 .recorder-box{
+    background-color: #f2f2f2;
+    padding:0 0.4rem;
+    display: inline-block;
+}
+.pagination1 .recorder{
+    width: 2.4rem;
+    height: 2.4rem;
+    background-color: #33cc00;
+    border-radius: 50%;
+    display: inline-block;
+}
+.pagination1 .recorder.recording{
+    background-color: #f39a51;
+}
+.pagination1 .recorder.recording .icon_record{
+    background-image: url(http://datainfo.b0.upaiyun.com/image/icon_recording_1.png);
+}
+.pagination1 .recorder-box .timer{
+    display: inline-block;
+    position: absolute;
+    top: 0.586666rem;
+    left: 0.4rem;
+    font-size: 0.4rem;
+    font-weight: 100;
+    color: #2e3a69;
+}
+.pagination1 .recorder-box .counter{
+    padding:0 0.4rem;
+    display: inline-block;
+    background-color: #f2f2f2;
+    position: absolute;
+    top: 50%;
+    right: 0.4533333rem;
+    margin-top: -0.266666rem;
+}
+.pagination1 .recorder-box .counter>span{
+    color: #fff;
+    display: block;
+    height: 0.53333333rem;
+    width: 1.1733333rem;
+    border-radius: 0.266666rem;
+    background-color: #a1a4ad;
+    text-align:center;
+    line-height: 0.53333333rem; 
+}
+.layout-recordfinsish-box{
+    z-index: 1010 !important;
+}
+.layout-recordfinsish-tip{
+    height: auto;
+    left: 50%;
+    margin-left: -4.4rem;
+    position: absolute;
+    text-align: center;
+    top: 3rem;
+    width: 8.8rem;
+}
+.layout-recordfinsish-tip .tip-msg{
+    background-color: #f2f2f2;
+    border: 1px solid #6d6d72;
+    box-shadow: 1px 1px 3px 2px #999, -1px -1px 3px 2px #999;
+    line-height: 1;
+    text-align: left;
+    width: 100%;
+}
+.layout-recordfinsish-box .layout-recordfinsish-tip .tip-msg .info{
+    clear: both;
+    overflow: hidden;
+    padding-left: 0.586667rem;
+    padding-right: 0.585555rem;
+    padding-top: 0.746667rem;
+    padding-bottom: 0.506666666rem;
+}
+.layout-recordfinsish-box .layout-recordfinsish-tip .tip-msg .info .play-back{
+    display: block;
+    width: 1.866666rem;
+    height: 1.866666rem;
+    background: url(http://datainfo.b0.upaiyun.com/image/icon_play_green.png) no-repeat center/100%;
+    float: left;
+}
+.layout-recordfinsish-box .layout-recordfinsish-tip .tip-msg .info .play-back.playing{
+    background: url(http://datainfo.b0.upaiyun.com/image/icon_pause_green.png) no-repeat center/100%;
+}
+.layout-recordfinsish-box .layout-recordfinsish-tip .tip-msg .info .play-back.on{
+    background: url(http://datainfo.b0.upaiyun.com/image/icon_pause_green.png) no-repeat center/100%;
+}
+.layout-recordfinsish-box .layout-recordfinsish-tip .tip-msg .info .redord-info {
+   /* float: left;*/
+    padding-left: 2.4rem;
+}
+.layout-recordfinsish-box .layout-recordfinsish-tip .tip-msg .user-tip{
+    font-size: 0.346666rem;
+    padding-top: 0.453333rem;
+    color: #6a7289;
+    line-height: 1;
+    word-break: break-all;
+}
+.layout-recordfinsish-box .layout-recordfinsish-tip .tip-msg .cur-book {
+    font-size: 0.346666rem;
+    padding-top: 0.453333rem;
+    color: #6a7289;
+    line-height: 1;
+}
+.layout-recordfinsish-box .layout-recordfinsish-tip .tip-msg .play-time {
+    color: #39436e;
+    font-size: 0.453333rem;
+    line-height: 1;
+    margin-top: 0.266667rem;
+}
+.layout-recordfinsish-box .layout-recordfinsish-tip .tip-msg .upload-btn{
+    border-top: 1px solid #a4a4a4;
+    text-align: center;
+    height: 1.54666666rem;
+}
+.layout-recordfinsish-box .layout-recordfinsish-tip .tip-msg .upload-btn .uploadRecordAudio,
+.layout-recordfinsish-box .layout-recordfinsish-tip .tip-msg .upload-btn .close{
+    font-size: 0.4rem;
+    color: #258b17;
+    line-height: 1.54666666rem;
+    font-weight: 600;
+}
+.layout-recordfinsish-box .close{
+    display: inline-block;
+    width: 1.12rem;
+    height: 1.12rem;
+    background: url(http://datainfo.b0.upaiyun.com/image/layer_close.png) no-repeat center/100%;
+    margin-top: 0.48rem;
+}
+/*暂停 开启任务 confirm弹层*/
+.layout-setlevelstatus-tip ,.layout-refundment-tip ,.layout-confirm-tip{
+    height: auto;
+    left: 50%;
+    margin-left: -4.4rem;
+    position: absolute;
+    text-align: center;
+    top: 3rem;
+    width: 8.8rem;
+}
+.layout-setlevelstatus-tip .tip-msg {
+    background-color: #f2f2f2;
+    border: 1px solid #6d6d72;
+    box-shadow: 1px 1px 3px 2px #999, -1px -1px 3px 2px #999;
+    line-height: 1;
+    padding: 0.1333333rem;
+    text-align: left;
+    width: auto;
+}
+.layout-setlevelstatus-tip .info > p {
+    font-size: 0.45rem;
+    height: 1.6rem;
+    line-height: 1.6rem;
+    text-align: center;
+    color: #535879;
+}
+.layout-setlevelstatus-tip .tip-msg .upload-btn {
+    border-top: 1px solid #a4a4a4;
+    height: 1rem;
+    text-align: center;
+    clear: both;
+    overflow: hidden;
+}
+
+.layout-setlevelstatus-tip .upload-btn > a {
+    float: left;
+    line-height: 1rem;
+    text-align: center;
+    width: 50%;
+    font-size: 0.45rem;
+}
+.layout-setlevelstatus-tip .upload-btn .cancel{
+    color: #000;
+    border-right: 1px solid #a4a4a4;
+}
+.layout-setlevelstatus-tip .upload-btn .ok{
+    color: #33cc00;
+}
+.close.close-setlevelstatus-tip ,.close-confirm-tip{
+    height: 40px;
+    line-height: 40px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 40px;
+}
+
+/*弹层、遮罩*/
+.layout{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index:990;
+    background-color: rgba(155,155,170,.62);
+    top: 0;
+    left: 0;
+}
+.layout.layout-crop{
+    z-index: 1010;
+} 
+.layout-task-tip{
+    width: 8.8rem;
+    height: auto;
+    top: 3rem;
+    position: absolute;
+    left: 50%;
+    margin-left: -4.4rem;
+    text-align: center;
+}
+.layout-task-tip .tip-msg{
+    width: 100%;
+    height: 5.3333333rem;
+    border: 1px solid #6d6d72;
+    background-color: #f2f2f2;
+    box-shadow: 1px 1px 3px 2px #999,-1px -1px 3px 2px #999;
+    text-align: left;
+    padding-top: 0.7466666rem;
+    padding-left: 0.5866666rem;
+    padding-right: 0.5855555rem;
+    padding-bottom: 0.3rem;
+    font-size: 0.3466666rem;
+    line-height: 150%;
+}
+.layout-task-tip .tip-msg .notice{
+    height: 3.6rem;
+    overflow: scroll;
+}
+.layout-task-tip  .close,.close-common-tip{
+    display: inline-block;
+    width: 1.12rem;
+    height: 1.12rem;
+    background: url(http://datainfo.b0.upaiyun.com/image/layer_close.png) no-repeat center/100%;
+    margin-top: 0.48rem;
+}
+/*本周进度*/
+.layout-progress-tip{
+    width: 8.8rem;
+    height: auto;
+    top: 3rem;
+    position: absolute;
+    left: 50%;
+    margin-left: -4.4rem;
+    text-align: center;
+}
+.layout-progress-tip .tip-msg{
+    width: 100%;
+    height: 8.6666666rem;
+    border: 1px solid #6d6d72;
+    background-color: #f2f2f2;
+    box-shadow: 1px 1px 3px 2px #999,-1px -1px 3px 2px #999;
+    text-align: center;
+    font-size: 0.32rem;
+    line-height: 120%;
+}
+.layout-progress-tip  .close{
+    display: inline-block;
+    width: 1.12rem;
+    height: 1.12rem;
+    background: url(http://datainfo.b0.upaiyun.com/image/layer_close.png) no-repeat center/100%;
+    margin-top: 0.48rem;
+}
+.layout-progress-tip .user-icon{
+    position: relative;
+    text-align: center;
+}
+.layout-progress-tip .user_img{
+    top: -0.7466666rem;
+}
+.layout-progress-tip .ribbon{
+    bottom: 0.32rem;
+    left: 50%;
+    margin-left: -1.8rem;
+    position: absolute;
+}
+.layout-progress-tip .ribbon .icon-ribbon{
+    display: inline-block;
+    width: 3.6rem;
+    height: 0.96rem;
+    background: url(http://datainfo.b0.upaiyun.com/image/icon_ribbon.png) no-repeat center/100%;
+}
+.layout-progress-tip .ribbon .icon-ribbon .user-name{
+    color: #fff;
+    font-size: 0.32rem;
+    padding-top: 0.12rem;
+}
+.layout-progress-tip .tip-msg .slogn>img{
+    width: 1.9466666rem;
+    margin-top: 0.46666666rem;
+}
+.layout-progress-tip .tip-msg .title{
+    margin-top: 0.48rem;
+    font-size: 0.64rem;
+    text-align: center;
+    color: #303b60;
+    line-height: 1;
+}
+.layout-progress-tip .tip-msg .progress-box{
+    margin:0.2rem 0.3333333rem 0.26666666rem;
+}
+.layout-progress-tip .tip-msg .progress-bar{
+    display: inline-block;
+    width: 100%;
+    height: 0.48rem;
+    border:1px solid #81819b;
+    border-radius: 0.08rem;
+    background-color: #f2f2f2;
+    text-align: left;
+    overflow: hidden;
+}
+.layout-progress-tip .tip-msg .progress-cover{
+    height: 0.48rem;
+    border: 1px solid transparent;
+    background-color: #f27920;
+    display: inline-block;
+    width: 10%;
+}
+.layout-progress-tip .tip-msg .read-info{
+    font-size: 0.32rem;
+    line-height: 1;
+    margin-bottom: 0.613333333rem;
+    color: #4f587e;
+}
+.share-box{
+    border-top: 1px solid #a4a4a4;
+    padding-top: 0.453333333rem;
+}
+
+.btn-share>span{
+    display: inline-block;
+    font-size: 0.4266666rem;
+    color: #218f15;
+    padding-left: 1.06666666rem;
+    vertical-align: middle;
+    height: 0.693333333rem;
+    line-height: 0.693333333rem;
+    background: url(http://datainfo.b0.upaiyun.com/image/icon_share.png) no-repeat left center/0.6rem 0.6rem;
+}
+
+/*学习等级弹层*/
+.layout-levelshow-tip{
+    width: 8.8rem;
+    height: auto;
+    top: 1.57333rem;
+    position: absolute;
+    left: 50%;
+    margin-left: -4.4rem;
+    text-align: center;
+}
+.layout-levelshow-tip .tip-msg{
+    width: 100%;
+    height: 8.5rem;
+    border: 1px solid #6d6d72;
+    background-color: #f2f2f2;
+    box-shadow: 1px 1px 3px 2px #999,-1px -1px 3px 2px #999;
+    text-align: center;
+    font-size: 0.32rem;
+    line-height: 120%;
+}
+.layout-levelshow-tip  .close{
+    display: inline-block;
+    width: 1.12rem;
+    height: 1.12rem;
+    background: url(http://datainfo.b0.upaiyun.com/image/layer_close.png) no-repeat center/100%;
+    margin-top: 0.48rem;
+}
+.layout-levelshow-tip .user-icon{
+    position: relative;
+    text-align: center;
+}
+.layout-levelshow-tip .user_img{
+    top: -1.17333rem;
+    border: 0.21rem solid #f39c57;
+    height: 2.34666rem;
+    width: 2.34666rem;
+}
+.layout-levelshow-tip .ribbon{
+    bottom: 0;
+    left: 50%;
+    margin-left: -3rem;
+    position: absolute;
+}
+.layout-levelshow-tip .ribbon .icon-ribbon{
+    display: inline-block;
+    width: 6rem;
+    height: 1.6rem;
+    background: url(http://datainfo.b0.upaiyun.com/image/icon_ribbon.png) no-repeat center/100%;
+}
+.layout-levelshow-tip .ribbon .icon-ribbon .user-name{
+    color: #fff;
+    font-size: 0.48rem;
+    padding-top: 0.32rem;
+}
+.medal-box{
+    margin-top: 0.16rem;
+}
+.medal-box .bless>img{
+    text-align: center;
+    width: 5.466666rem;
+}
+.medal-box .medal-level>img{
+    text-align: center;
+    width: 1.3333333rem;
+    margin-top: 10px;
+}
+.layout-levelshow-tip .step-tip{
+    margin-top: 0.16rem;
+    font-size: 0.32rem;
+    color: #4f597b;
+    vertical-align: bottom;
+}
+.layout-levelshow-tip .step-tip>span,.layout-levelshow-tip .read-info>span{
+    font-size: 0.4266666rem;
+    vertical-align: bottom;
+}
+.layout-levelshow-tip .read-info{
+    margin-top: 0.9333333rem;
+    font-size: 0.32rem;
+    color: #4f597b;
+    margin-bottom: 0.266666rem;
+    vertical-align: bottom;
+}
+/*新用户加入*/
+.layout-newer-box  .welcome-tip > img {
+    margin: 1.6rem -0.62rem 1rem 0;
+    width: 5.066rem;
+}
+/*完成100本计划*/
+.layout-taskdone-box .medal-box .medal-level{
+    margin-bottom: 0.746666666rem;
+}
+.layout-taskdone-box  .medal-box .medal-level > img{
+    width: 0.693333rem;
+    margin:0 0.24rem;
+}
+.layout-taskdone-box .done-tip {
+    font-size: 0.32rem;
+    padding-top: 0.4rem;
+    color: #4f597b;
+}
+.layout-taskdone-box .read-info{
+    margin-top: 1.65333rem;
+}
+/*浮动滑动层*/
+.layout-userinfo ,.layout-progress,.layout-history,.layout-deposit{
+    background-color: #f3eddd;
+    padding-bottom: 1.6rem;
+    -webkit-transform:translateX(100%);
+    -moz-transform:translateX(100%);
+    transform:translateX(100%);
+
+
+    -moz-transition: transform 0.62s;
+    -webkit-transition: transform 0.62s;
+    transition: transform 0.62s;
+}
+.layout-userinfo.on,.layout-progress.on,.layout-history.on,.layout-deposit.on{
+    -webkit-transform:translateX(0);
+    -moz-transform:translateX(0);
+    transform:translateX(0);
+}
+.layout .content>div:last-child{
+    margin-bottom: 1.6rem;
+} 
+.content>div:last-child{
+    margin-bottom: 2.6rem;
+}
+
+/*保证金 支付*/
+.bzj-intro img{
+    width: 100%;
+    overflow: hidden;
+}
+.layout-payment-tip{
+    position: absolute;
+    display: block;
+    width: 8.8rem;
+    height: 82.666666%;
+    background-color: #f2f2f2;
+    border: 1px solid #b3b3b3;
+    top: 6.72222%;
+    left: 0.6rem;
+}
+.layout-payment-tip .tip-msg{
+    padding: 0.8rem 0.533333rem
+}
+.layout-payment-tip .tip-msg>p{
+    font-size: 0.32rem;
+    color: #525d7d;
+    line-height: 150%;
+}
+.layout-payment-tip .tip-msg .title{
+    font-weight: 600;
+}
+.layout-payment-tip .close.close-payment-tip {
+    color: #b3b3b3;
+    display: block;
+    font-size: 0.42rem;
+    height: 1rem;
+    line-height: 1rem;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
+    vertical-align: middle;
+    width: 1rem;
+}
+.layout-payment-tip .readnote {
+    font-size: 0.42666666rem;
+    color: #000;
+    bottom: 0.8rem;
+    position: absolute;
+    left: 50%;
+    margin-left: -1.0666666rem;
+    font-weight: 600;
+}
+/*用户信息完善*/
+.layout-crop .imgbox {
+    margin-bottom: 10%;
+}
+.layout-crop .cropimage {
+    width: 100%;
+}
+.layout-crop .btn.crop{
+    position: fixed;
+    bottom: 1.61rem;
+    left: 0;
+    z-index: 1010;
+}
+.layout-crop .btn.crop > span {
+    background-color: #ff4b0c;
+    border-radius: 20px;
+    color: #fff;
+    display: inline-block;
+    font-size: 0.48rem;
+    padding: 0 10%;
+    width: auto;
+} 
+/*鼓励金*/
+.layout-setencourage-tip{
+    width: 8.8rem;
+    height: auto;
+    top: 1.57333rem;
+    position: absolute;
+    left: 50%;
+    margin-left: -4.4rem;
+    text-align: center;
+}
+.layout-setencourage-tip .tip-msg{
+    width: 100%;
+    height: 10.1333333rem;
+    border: 1px solid #6d6d72;
+    background-color: #f2f2f2;
+    box-shadow: 1px 1px 3px 2px #999,-1px -1px 3px 2px #999;
+    text-align: center;
+    font-size: 0.32rem;
+    line-height: 120%;
+}
+.layout-setencourage-tip .icon-tip>img{
+    margin-top: 0.8rem;
+    margin-bottom: 0.2rem;
+    width: 5.9333333rem;
+}
+.layout-setencourage-tip .tip-msg .msg{
+    font-size: 0.50666666rem;
+    color:#53646e;
+    line-height: 1;
+}
+.layout-setencourage-tip .tip-msg .reward{
+    height: 4.8rem;
+    overflow: hidden;
+    display: inline-block;
+}
+.layout-setencourage-tip .tip-msg .reward>span{
+    margin-top: 0.82666666rem;
+    margin-bottom: 1.5333333rem;
+    font-size: 0.48rem;
+    text-align: center;
+    color: #cca349;
+    line-height: 1;
+    display: inline-block;
+}
+.layout-setencourage-tip .tip-msg .reward .money{
+    font-size: 2.46666666rem;
+}
+.layout-setencourage-tip .close{
+    display: inline-block;
+    width: 1.12rem;
+    height: 1.12rem;
+    background: url(http://datainfo.b0.upaiyun.com/image/layer_close.png) no-repeat center/100%;
+    margin-top: 0.48rem;
+}
+/*鼓励金*/
+.widthdraw-tip-box .layout-widthdraw-tip ,.widthdraw-modify-tip-box .layout-widthdraw-tip{
+    height: 4.6rem;
+    background-color: #f2f2f2;
+    border: 1px solid #6d6d72;
+    box-shadow: 1px 1px 3px 2px #999, -1px -1px 3px 2px #999;
+    width: 100%;
+    left: 50%;
+    margin-left: -4.4rem;
+    position: absolute;
+    text-align: center;
+    top: 1.57333rem;
+    width: 8.8rem;
+}
+.widthdraw-tip-box .layout-widthdraw-tip .tip-msg{
+    height: 3.2rem;
+    padding:  1.2rem 0.8533333rem 0.4533333rem 0.6666666rem;
+}
+.widthdraw-tip-box .layout-widthdraw-tip .tip-msg .notice{
+    font-size: 0.34666666rem;
+    color: #41456a;
+}
+.widthdraw-tip-box .connect-num-input{
+    text-align: right;
+    margin: 0.2rem 0 0.4rem auto;
+}
+.widthdraw-tip-box .connect-num-input input{
+    height: 0.9333333rem;
+    width: 5.2rem;
+    border: 1px solid #c7c7c7;
+    border-radius: 0.4666666rem;
+    font-size: 0.34666666rem;
+    color: #41456a;
+    line-height: 0.9rem;
+    text-indent: 0.2rem;
+}
+.widthdraw-tip-box .layout-widthdraw-tip .upload-btn ,.widthdraw-modify-tip-box .layout-widthdraw-tip .upload-btn{
+    height: 1.4rem;
+    line-height: 1.4rem;
+    border-top: 1px solid #b3b3b3;
+    font-size: 0.48rem;
+    color: #3b9c31;
+}
+
+.widthdraw-tip-box .close,.widthdraw-modify-tip-box .close{
+    background: rgba(0, 0, 0, 0) url("http://datainfo.b0.upaiyun.com/image/layer_close.png") no-repeat scroll center center / 100% auto;
+    display: inline-block;
+    height: 1.12rem;
+    margin-top: 0.48rem;
+    width: 1.12rem;
+}
+.widthdraw-modify-tip-box .layout-widthdraw-tip .tip-msg{
+    height: 3.2rem;
+    padding: 1.2rem 1.2rem 0;
+}
+.widthdraw-modify-tip-box .tip-msg .notice{
+    font-size: 0.34666666rem;
+    color: #41456a;
+    line-height: 150%;
+}
+/*阶段完成 提示*/
+.content-home  .tip-msg{
+    padding: 1.64rem 1.7333333rem 1.253333rem 2rem;
+    text-align: center;
+}
+.content-home  .tip-msg .title{
+    font-size: 0.56rem;
+    color: #575c79;
+}
+.content-home .tip-msg .notice{
+    height: 1.133333rem;
+    padding-top: 0.2rem;
+    font-size: 0.3466666rem;
+    color: #74768f;
+}
+.content-home .tip-msg .operate-tip{
+    font-size: 0.293333rem;
+    color: #2e8e3f;
+    line-height: 150%;
+    padding-bottom: 0.06666666rem;
+    border-bottom: 1px solid #575c79
+}
+.layout-stage-tip-box .tip-msg{
+    padding: 1.64rem 1.7333333rem 1.253333rem 2rem;
+    text-align: center;
+}
+.layout-stage-tip-box .tip-msg .title{
+    font-size: 0.56rem;
+    color: #575c79;
+}
+.layout-stage-tip-box .tip-msg .notice{
+    height: 1.133333rem;
+    padding-top: 0.2rem;
+    font-size: 0.3466666rem;
+    color: #74768f;
+}
+.layout-stage-tip-box .tip-msg .operate-tip{
+    font-size: 0.293333rem;
+    color: #2e8e3f;
+    line-height: 150%;
+    padding-bottom: 0.06666666rem;
+    border-bottom: 1px solid #575c79
+}
+/*弹层层级*/
+.common-tip-box,.layout-download-tip-box,.layout-task-tip-box,.layout-task-progress-box,
+.layout-newer-box,.layout-levelshow-box,.layout-taskdone-box,.layout-refundment-box,.layout-confirm-box,
+.widthdraw-tip-box,.widthdraw-modify-tip-box,.layout-encourage-box{
+    z-index: 1100;
+}
+
+.btn .caret {
+    margin-left: 0;
+}
+.caret {
+    background: url(../image/icon_select.png) no-repeat center/100%;
+    width: 0.3733333rem;
+    height: 0.48rem;
+    position: absolute;
+    right: 0.33333rem;
+    top: 50%;
+    margin-top: -0.24rem;
+}

@@ -1,0 +1,3 @@
+<?php
+echo json_encode(array('code'=>'0','msg'=>'成功',"data"=>array("books"=>array("num"=>8,'words'=>12234,"duration"=>168,"duration_unit"=>"分"),"my"=>array("num"=>1,"words"=>3080,"duration"=>66,"duration_unit"=>"分"),"user"=>array("headimgurl"=>"image/user_head.png","name"=>"测试用户","duration"=>7,"duration_unit"=>"分"),"items"=>array(array("title"=>"第一周","description"=>"任务截至:2017-05-28 23:59"),array("title"=>"第二周","description"=>"任务未完成")))));
+?>

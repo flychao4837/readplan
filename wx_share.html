@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    
+    <meta content="【亲子阅读计划】" name="description" />
+    <meta content="" name="author" />
+    <title>【亲子阅读计划】</title>
+    <script type="text/javascript" src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/flexible_css.js"></script>
+    <script type="text/javascript" src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/flexible.js"></script>
+
+    <link href="css/reset.css" rel="stylesheet" type="text/css"/>
+    <link href="css/share.css" rel="stylesheet" type="text/css"/>
+    <link href="http://datainfo.b0.upaiyun.com/css/uiDialog.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+    <div class="content content-wxshare hide">
+
+        <div class="tip-msg">
+            <div class="user-icon">
+                <div class="user_img">
+                    <img src="" class="headimg">
+                </div>
+            </div>
+            <p class="reader">我是<span class="font-warning">段全鑫</span></p>
+            <p class="title">我已经完成<span class="font-warning">亲子共读100本计划</span></p>
+            <div class="medal-box">
+                <div class="bless">
+                    <div class="read-status clear">
+                      <div class="books left">
+                        <p class="book-num"><span class="font-warning">21</span>本</p>
+                        <p>完成阅读<p>
+                      </div>
+                      <div class="read-time left">
+                        <p class="times"><span class="font-warning">64</span>小时</p>
+                        <p>累计时长<p>
+                      </div>
+                    </div>
+                </div>
+                <div class="welcome-tip wxshare-tip">
+                    <img src="http://datainfo.b0.upaiyun.com/image/tip_msg.png" />
+                </div>
+            </div>
+        </div>
+        <div class="qcode-box">
+          <div class="clear">
+            <div class="code left">
+              <img src="image/code.png" />
+            </div>
+            <div class="tips left">
+              <p>识别二维码关注【亲子阅读计划】</p>
+              <p class="font-warning">通过阅读 爱上阅读<p>
+            </div>
+          </div>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/1.9.1/jquery.js"></script>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
+<script type="text/javascript" src="http://datainfo.b0.upaiyun.com/js/uiDialog.js"></script>
+<script type="text/javascript">
+$(function(){
+    var shareData = {
+        title: "",
+        desc: "",
+        link: "",
+        imgUrl: ""
+    };
+    var dialog = new Dialog();
+    var globalAPI = "/api"
+    function getQueryString(e) {
+        var t = new RegExp("(^|&)" + e + "=([^&]*)(&|$)"),
+            str = decodeURIComponent(window.location.search),
+            n = str.substr(1).match(t);
+        return null != n ? unescape(n[2]) : null
+    }
+    var info = getQueryString("info");
+    var data = JSON.parse(info);
+    if($.isEmptyObject(data)){
+      dialog.tip({"msg":"分享数据获取失败","time":2000});
+      return
+    }else{
+      shareData.title = data.user_name+"的读书分享";
+      shareData.desc = data.user_name+"的读书分享";
+      shareData.imgUrl = data.headimgurl;
+      var level = data.level;
+
+      $(".timess>span").html(data.week);
+      $(".book-num>span").html(data.books);
+      $(".reader>span").html(data.user_name)
+      $(".headimg").attr("src",data.headimgurl);
+      $(".content-wxshare").show();
+    }
+    function getConfigInfo(){
+        var id = getQueryString("id");
+        $.ajax({
+            url: globalAPI+'/learn/level-book-share',
+            type: 'POST',
+            dataType: 'jsonp',
+            data: {info: info},
+        })
+        .done(function(res) {
+            if(res.code==0){
+                wx.config({
+                    debug: false,
+                    appId: res.data.appId,
+                    timestamp: res.data.timestamp,
+                    nonceStr: res.data.nonceStr,
+                    signature: res.data.signature,
+                    jsApiList: [
+                        'checkJsApi',
+                        'onMenuShareTimeline',
+                        'onMenuShareAppMessage',
+                        'onMenuShareQQ',
+                        'onMenuShareWeibo',
+                        'onMenuShareQZone',
+                    ]
+                });
+                shareData.link = res.url;
+
+            }else{
+                dialog.tip({"msg":"分享数据获取失败","time":2000});
+            }
+        })
+        .fail(function() {
+            dialog.tip({"msg":"分享数据获取失败","time":2000});
+        }) 
+    }
+    getConfigInfo();
+    wx.ready(function(){ 
+        wx.onMenuShareTimeline({
+          title: shareData.title,
+          link: shareData.link,
+          imgUrl: shareData.imgUrl,
+          success: function (res) {
+            window.location.href="home.html";
+          },
+          cancel: function (res) {
+            
+          },
+          fail: function (res) {
+            
+          }
+        });
+        wx.onMenuShareAppMessage({
+          title: shareData.title,
+          desc : shareData.desc,
+          link: shareData.link,
+          imgUrl: shareData.imgUrl,
+          success: function (res) {
+            window.location.href="home.html";
+          },
+          cancel: function (res) {
+            
+          },
+          fail: function (res) {
+            
+          }
+        });
+        wx.onMenuShareQQ({
+          title: shareData.title,
+          desc : shareData.desc,
+          link: shareData.link,
+          imgUrl: shareData.imgUrl,
+          success: function (res) {
+            window.location.href="home.html";
+          },
+          cancel: function (res) {
+            
+          },
+          fail: function (res) {
+            
+          }
+        });
+        wx.onMenuShareWeibo({
+          title: shareData.title,
+          desc : shareData.desc,
+          link: shareData.link,
+          imgUrl: shareData.imgUrl,
+          success: function (res) {
+            window.location.href="home.html";
+          },
+          cancel: function (res) {
+            
+          },
+          fail: function (res) {
+            
+          }
+        });
+        wx.onMenuShareQZone({
+          title: shareData.title,
+          desc : shareData.desc,
+          link: shareData.link,
+          imgUrl: shareData.imgUrl,
+          success: function (res) {
+            window.location.href="home.html";
+          },
+          cancel: function (res) {
+            
+          },
+          fail: function (res) {
+            
+          }
+        });
+    })
+})
+</script>
